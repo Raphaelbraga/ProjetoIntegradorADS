@@ -1,12 +1,13 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
-package br.com.LeituraAgua.Telas;
+package visão;
 
 /**
  *
- * @author Usuario
+ * @author Alunos
  */
 public class TelaLogin extends javax.swing.JFrame {
 
@@ -26,60 +27,104 @@ public class TelaLogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButtonAcessar = new javax.swing.JButton();
+        jLabelUsuario = new javax.swing.JLabel();
+        jLabelSenha = new javax.swing.JLabel();
+        jTextFieldUsuario = new javax.swing.JTextField();
+        jPasswordFieldSenha = new javax.swing.JPasswordField();
+        jLabelLogo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        jLabelFundoLogin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("leitura-login");
-        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setPreferredSize(new java.awt.Dimension(400, 280));
-        setResizable(false);
+        getContentPane().setLayout(null);
 
-        jLabel1.setText("Usuário");
+        jButtonAcessar.setBackground(new java.awt.Color(255, 255, 255));
+        jButtonAcessar.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jButtonAcessar.setText("Acessar");
+        jButtonAcessar.setAlignmentY(0.0F);
+        jButtonAcessar.setAutoscrolls(true);
+        jButtonAcessar.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, null));
+        jButtonAcessar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAcessarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonAcessar);
+        jButtonAcessar.setBounds(430, 290, 240, 50);
+        jButtonAcessar.getAccessibleContext().setAccessibleParent(jButtonAcessar);
 
-        jLabel2.setText("Senha");
+        jLabelUsuario.setBackground(new java.awt.Color(51, 255, 102));
+        jLabelUsuario.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        jLabelUsuario.setForeground(new java.awt.Color(49, 74, 110));
+        jLabelUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelUsuario.setLabelFor(jLabelUsuario);
+        jLabelUsuario.setText("Usuário:");
+        jLabelUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jLabelUsuario.setDebugGraphicsOptions(javax.swing.DebugGraphics.LOG_OPTION);
+        getContentPane().add(jLabelUsuario);
+        jLabelUsuario.setBounds(350, 120, 150, 40);
+        jLabelUsuario.getAccessibleContext().setAccessibleParent(jLabelUsuario);
 
-        jButton1.setText("Efetuar Login");
+        jLabelSenha.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        jLabelSenha.setForeground(new java.awt.Color(49, 74, 110));
+        jLabelSenha.setText("Senha:");
+        jLabelSenha.setAlignmentY(0.0F);
+        getContentPane().add(jLabelSenha);
+        jLabelSenha.setBounds(360, 180, 140, 40);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(59, 59, 59)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
-                            .addComponent(jPasswordField1))))
-                .addContainerGap(56, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
-                .addComponent(jButton1)
-                .addContainerGap(95, Short.MAX_VALUE))
-        );
+        jTextFieldUsuario.setBackground(new java.awt.Color(200, 200, 200));
+        jTextFieldUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldUsuario.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        jTextFieldUsuario.setInheritsPopupMenu(true);
+        jTextFieldUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldUsuarioActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextFieldUsuario);
+        jTextFieldUsuario.setBounds(500, 120, 260, 40);
 
-        pack();
+        jPasswordFieldSenha.setBackground(new java.awt.Color(200, 200, 200));
+        jPasswordFieldSenha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPasswordFieldSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordFieldSenhaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jPasswordFieldSenha);
+        jPasswordFieldSenha.setBounds(500, 180, 260, 40);
+
+        jLabelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Icon login.png"))); // NOI18N
+        getContentPane().add(jLabelLogo);
+        jLabelLogo.setBounds(580, 0, 120, 120);
+
+        jLabel1.setText("Versão 1.0.1");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(340, 490, 70, 14);
+
+        jLabelFundoLogin.setBackground(new java.awt.Color(0, 0, 0));
+        jLabelFundoLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Water-Background-1024x682.png"))); // NOI18N
+        getContentPane().add(jLabelFundoLogin);
+        jLabelFundoLogin.setBounds(0, -90, 1050, 700);
+
+        setSize(new java.awt.Dimension(792, 556));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAcessarActionPerformed
+        TelaPrincipal tela = new TelaPrincipal ();
+        tela.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButtonAcessarActionPerformed
+
+    private void jTextFieldUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldUsuarioActionPerformed
+
+    private void jPasswordFieldSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordFieldSenhaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -117,10 +162,13 @@ public class TelaLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonAcessar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jLabelFundoLogin;
+    private javax.swing.JLabel jLabelLogo;
+    private javax.swing.JLabel jLabelSenha;
+    private javax.swing.JLabel jLabelUsuario;
+    private javax.swing.JPasswordField jPasswordFieldSenha;
+    private javax.swing.JTextField jTextFieldUsuario;
     // End of variables declaration//GEN-END:variables
 }
