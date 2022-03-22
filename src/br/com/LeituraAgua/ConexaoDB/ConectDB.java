@@ -24,7 +24,7 @@ public class ConectDB {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connect = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/testList", "root", "100%Tabajara");
+                    "jdbc:mysql://localhost:3306/leituradb", "root", "100%Tabajara");
 
             System.out.println("conectado ao DB");
         }
