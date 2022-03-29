@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package visão;
+package br.com.LeituraAgua.Telas;
 
 /**
  *
@@ -113,7 +113,7 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAcessarActionPerformed
-        TelaPrincipal tela = new TelaPrincipal ();
+        TelaLogin tela = new TelaLogin ();
         tela.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonAcessarActionPerformed

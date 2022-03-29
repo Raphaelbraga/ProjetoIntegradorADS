@@ -2,22 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package br.com.leituraAgua.ConexaoDB;
+package br.com.LeituraAgua.DAL;
 
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ConectDB {
+public class ConexaoDAO {
     static Statement stmt = null;
     static Connection connect = null;
 
     public static void main(String[] args) {
         //conectDB connection = new conectDB();
-        String nome = "Fulano";
         createConnection();
-        insert(nome);
-       }
+        }
 
         static void createConnection(){
 
@@ -30,24 +28,13 @@ public class ConectDB {
         }
 
         catch (ClassNotFoundException ex){
-            Logger.getLogger(ConectDB.class.getName()).log(Level.SEVERE, null,ex);
+            Logger.getLogger(ConexaoDAO.class.getName()).log(Level.SEVERE, null,ex);
         }
         catch (SQLException ex){
-            Logger.getLogger(ConectDB.class.getName()).log(Level.SEVERE, null,ex);
+            Logger.getLogger(ConexaoDAO.class.getName()).log(Level.SEVERE, null,ex);
             ex.printStackTrace();
         }
 
        }
 
-       public static void insert (String nome){
-
-        try {
-            stmt = connect.createStatement();
-            String sql = "insert into aula values ('" + nome + "')";
-            stmt.execute(sql);
-        } catch (SQLException add){
-                add.getMessage();
-        }
-
-       }
 }
