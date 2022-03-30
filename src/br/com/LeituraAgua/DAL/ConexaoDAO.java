@@ -18,7 +18,7 @@ public class ConexaoDAO {
         createConnection();
         }  */
 
-    static void createConnection() {
+    static void createConnection(){
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -26,13 +26,16 @@ public class ConexaoDAO {
                     "jdbc:mysql://localhost:3306/leituradb", "root", "100%Tabajara");
 
             System.out.println("conectado ao DB");
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ConexaoDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ConexaoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        catch (ClassNotFoundException ex){
+            Logger.getLogger(ConexaoDAO.class.getName()).log(Level.SEVERE, null,ex);
+        }
+        catch (SQLException ex){
+            Logger.getLogger(ConexaoDAO.class.getName()).log(Level.SEVERE, null,ex);
             ex.printStackTrace();
         }
 
-    }
+       }
 
 }
