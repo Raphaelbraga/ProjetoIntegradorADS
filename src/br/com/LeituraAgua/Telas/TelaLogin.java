@@ -33,7 +33,7 @@ public class TelaLogin extends javax.swing.JFrame {
         jTextFieldUsuario = new javax.swing.JTextField();
         jPasswordFieldSenha = new javax.swing.JPasswordField();
         jLabelLogo = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelversão = new javax.swing.JLabel();
         jLabelFundoLogin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -41,17 +41,19 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jButtonAcessar.setBackground(new java.awt.Color(255, 255, 255));
         jButtonAcessar.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jButtonAcessar.setForeground(new java.awt.Color(49, 74, 110));
         jButtonAcessar.setText("Acessar");
         jButtonAcessar.setAlignmentY(0.0F);
         jButtonAcessar.setAutoscrolls(true);
-        jButtonAcessar.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, null));
+        jButtonAcessar.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED)));
+        jButtonAcessar.setInheritsPopupMenu(true);
         jButtonAcessar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAcessarActionPerformed(evt);
             }
         });
         getContentPane().add(jButtonAcessar);
-        jButtonAcessar.setBounds(430, 290, 240, 50);
+        jButtonAcessar.setBounds(560, 300, 310, 50);
         jButtonAcessar.getAccessibleContext().setAccessibleParent(jButtonAcessar);
 
         jLabelUsuario.setBackground(new java.awt.Color(51, 255, 102));
@@ -63,7 +65,7 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabelUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jLabelUsuario.setDebugGraphicsOptions(javax.swing.DebugGraphics.LOG_OPTION);
         getContentPane().add(jLabelUsuario);
-        jLabelUsuario.setBounds(350, 120, 150, 40);
+        jLabelUsuario.setBounds(350, 140, 220, 40);
         jLabelUsuario.getAccessibleContext().setAccessibleParent(jLabelUsuario);
 
         jLabelSenha.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
@@ -71,7 +73,7 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabelSenha.setText("Senha:");
         jLabelSenha.setAlignmentY(0.0F);
         getContentPane().add(jLabelSenha);
-        jLabelSenha.setBounds(360, 180, 140, 40);
+        jLabelSenha.setBounds(400, 200, 210, 40);
 
         jTextFieldUsuario.setBackground(new java.awt.Color(200, 200, 200));
         jTextFieldUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -83,7 +85,7 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTextFieldUsuario);
-        jTextFieldUsuario.setBounds(500, 120, 260, 40);
+        jTextFieldUsuario.setBounds(530, 140, 370, 40);
 
         jPasswordFieldSenha.setBackground(new java.awt.Color(200, 200, 200));
         jPasswordFieldSenha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -93,22 +95,23 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jPasswordFieldSenha);
-        jPasswordFieldSenha.setBounds(500, 180, 260, 40);
+        jPasswordFieldSenha.setBounds(530, 200, 370, 40);
 
-        jLabelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Icon login.png"))); // NOI18N
+        jLabelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/LeituraAgua/Imagens/Icon login.png"))); // NOI18N
         getContentPane().add(jLabelLogo);
-        jLabelLogo.setBounds(580, 0, 120, 120);
+        jLabelLogo.setBounds(650, 20, 120, 120);
 
-        jLabel1.setText("Versão 1.0.1");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(340, 490, 70, 14);
+        jLabelversão.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabelversão.setText("Versão 1.0.1");
+        getContentPane().add(jLabelversão);
+        jLabelversão.setBounds(470, 640, 80, 15);
 
         jLabelFundoLogin.setBackground(new java.awt.Color(0, 0, 0));
-        jLabelFundoLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Water-Background-1024x682.png"))); // NOI18N
+        jLabelFundoLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/LeituraAgua/Imagens/Water-Background-1024x682.png"))); // NOI18N
         getContentPane().add(jLabelFundoLogin);
-        jLabelFundoLogin.setBounds(0, -90, 1050, 700);
+        jLabelFundoLogin.setBounds(0, -20, 1024, 690);
 
-        setSize(new java.awt.Dimension(792, 556));
+        setSize(new java.awt.Dimension(1036, 703));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -163,11 +166,11 @@ public class TelaLogin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAcessar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelFundoLogin;
     private javax.swing.JLabel jLabelLogo;
     private javax.swing.JLabel jLabelSenha;
     private javax.swing.JLabel jLabelUsuario;
+    private javax.swing.JLabel jLabelversão;
     private javax.swing.JPasswordField jPasswordFieldSenha;
     private javax.swing.JTextField jTextFieldUsuario;
     // End of variables declaration//GEN-END:variables
