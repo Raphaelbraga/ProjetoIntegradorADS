@@ -15,18 +15,18 @@ import java.util.ArrayList;
  * @author Usuario
  */
 public class HidrometroDAO {
-    public boolean cadastrar (Hidrometro obj){
+
+    public boolean cadastrar(Hidrometro obj) {
         boolean retorno = false;
         try {
             stmt = connect.createStatement();
             String mysql = "INSERT INTO hidrometro id_hidrometro,leitura_instalacao"
-                + "+ situacao, id_consumidor, id_endereco";
-        
+                    + " situacao, id_consumidor, id_endereco";
+
             stmt.execute(mysql);
-        } catch (SQLException add){
-                add.getMessage();
+        } catch (SQLException add) {
+            add.getMessage();
         }
-                return false;
+        return false;
     }
 }
-
