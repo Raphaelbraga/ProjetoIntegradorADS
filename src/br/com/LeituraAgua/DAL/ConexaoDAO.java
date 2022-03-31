@@ -11,16 +11,17 @@ import java.util.logging.Logger;
 public class ConexaoDAO {
     static Statement stmt = null;
     static Connection connect = null;
-
+    
+    /*
     public static void main(String[] args) {
         //conectDB connection = new conectDB();
         createConnection();
-        }
+        }  */
 
-        static void createConnection(){
+    static void createConnection(){
 
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
             connect = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/leituradb", "root", "100%Tabajara");
 
