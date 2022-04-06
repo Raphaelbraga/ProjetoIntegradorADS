@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package br.com.LeituraAgua.DAL;
+package br.com.LeituraAgua.DAO;
 
 import br.com.model.Hidrometro;
-import static br.com.LeituraAgua.DAL.ConexaoDAO.connect;
-import static br.com.LeituraAgua.DAL.ConexaoDAO.stmt;
+import static br.com.LeituraAgua.DAO.ConexaoDAO.connect;
+import static br.com.LeituraAgua.DAO.ConexaoDAO.stmt;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
