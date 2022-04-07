@@ -9,5 +9,5 @@ package br.com.LeituraAgua.controler;
  * @author Usuario
  */
 public class CadastroUsuario {
-    
+    public cadastrar
 }

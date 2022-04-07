@@ -9,15 +9,22 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ConexaoDAO {
-    static Statement stmt = null;
-    static Connection connect = null;
+    public static Connection connect = null;
     
-    /*
-    public static void main(String[] args) {
-        //conectDB connection = new conectDB();
-        createConnection();
-        }  */
+    private static ConexaoDAO INSTANCE;
 
+    public ConexaoDAO() {
+        connect = createConnection();
+    }
+           
+    public static ConexaoDAO getInstance() {
+        if(INSTANCE == null) {
+            INSTANCE = new ConexaoDAO();
+        }
+        
+        return INSTANCE;
+    }
+    
     public static Connection createConnection(){
 
         try {

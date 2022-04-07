@@ -6,6 +6,9 @@
 package br.com.LeituraAgua.Telas;
 import java.sql.*;
 import br.com.LeituraAgua.DAO.ConexaoDAO;
+import br.com.LeituraAgua.controler.LoginUsuario;
+import br.com.model.Usuario;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,8 +25,16 @@ public class TelaLogin extends javax.swing.JFrame {
         initComponents();
         connect = ConexaoDAO.createConnection();
         if (connect != null) {
-            System.out.println(connect);
+            /*
+            criar uma label na tela com id lblStatus
+            para apresentar status da conexão
+            lblStatus.setText(conexão ok)
+            */
+            System.out.println(connect +"conexão ok");
         } else {
+            /*
+            lblStatus.setText(falha conexão)
+            */
             System.out.println("falha de conexão");
         }
     }
@@ -126,9 +137,18 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAcessarActionPerformed
-        TelaLogin tela = new TelaLogin ();
-        tela.setVisible(true);
-        dispose();
+        LoginUsuario controller = new LoginUsuario();
+        int senha = Integer.parseInt(new String(jPasswordFieldSenha.getPassword()));
+        Usuario usuarioLogado = controller.logarUsuario(jTextFieldUsuario.getText(), senha);
+        
+        JOptionPane.showMessageDialog(null, controller.getMensagem());
+        
+        if (usuarioLogado != null && !controller.getMensagem().contains("Erro")){
+            TelaPrincipal principal = new TelaPrincipal();
+            principal.setVisible(true);
+            this.dispose();
+        }
+        
     }//GEN-LAST:event_jButtonAcessarActionPerformed
 
     private void jTextFieldUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUsuarioActionPerformed
