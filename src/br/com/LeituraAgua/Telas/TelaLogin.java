@@ -4,18 +4,28 @@
  * and open the template in the editor.
  */
 package br.com.LeituraAgua.Telas;
+import java.sql.*;
+import br.com.LeituraAgua.DAO.ConexaoDAO;
 
 /**
  *
  * @author Alunos
  */
 public class TelaLogin extends javax.swing.JFrame {
-
+    Connection connect = null;
+    PreparedStatement pst = null;
+    ResultSet result = null;
     /**
      * Creates new form TelaLogin
      */
     public TelaLogin() {
         initComponents();
+        connect = ConexaoDAO.createConnection();
+        if (connect != null) {
+            System.out.println(connect);
+        } else {
+            System.out.println("falha de conexão");
+        }
     }
 
     /**
