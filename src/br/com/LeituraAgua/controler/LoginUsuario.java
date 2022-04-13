@@ -7,7 +7,6 @@ package br.com.LeituraAgua.controler;
 import br.com.LeituraAgua.DAO.ConexaoDAO;
 import br.com.LeituraAgua.DAO.UsuarioDAO;
 import br.com.model.Usuario;
-import com.mysql.cj.conf.PropertyKey;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
