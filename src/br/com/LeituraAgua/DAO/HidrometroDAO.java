@@ -6,7 +6,6 @@ package br.com.LeituraAgua.DAO;
 
 import br.com.model.Hidrometro;
 import static br.com.LeituraAgua.DAO.ConexaoDAO.connect;
-import static br.com.LeituraAgua.DAO.ConexaoDAO.stmt;
 import java.sql.SQLException;
 import java.util.ArrayList;
 

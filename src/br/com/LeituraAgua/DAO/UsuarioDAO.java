@@ -6,42 +6,41 @@ package br.com.LeituraAgua.DAO;
 
 import br.com.model.Usuario;
 import static br.com.LeituraAgua.DAO.ConexaoDAO.connect;
-import java.awt.List;
-
 import java.sql.*;
-import java.util.ArrayList;
+
+
 
 public class UsuarioDAO {
 
     private PreparedStatement stmt;
 
-    public boolean cadastrar(Usuario obj) {
-        boolean retCadastrar = false;
+    public Usuario cadastrar(String idUsuario,String tipoUsuario, String login, int senha) {
 
         try {
-             String mySql = "INSERT INTO usuario (login, senha, tipo_usuario) values (?, ?, ?)";
-            stmt = ConexaoDAO.getInstance().connect.prepareStatement(mySql);
-            stmt.setString(1, obj.getLogin());
-            stmt.setInt(2, obj.getSenha());
-            stmt.setString(3, obj.getTipoUsuario());
-            Boolean sucesso = stmt.execute();
+         String sqlcadastra = "INSERT INTO usuario (idUsuario, tipo_usuario,login, senha ) values (?, ?, ?)";
+            stmt = ConexaoDAO.connect.prepareStatement(sqlcadastra);
+            stmt.setString(1, idUsuario);
+            stmt.setString(1, tipoUsuario);
+            stmt.setString(2, login);
+            stmt.setInt(3, senha);
+            ResultSet usuario = stmt.executeQuery();
             
-            if (sucesso){
-                System.out.println("Sucesso!");
-            }
-            return retCadastrar;
+            Usuario novoUsuario = new Usuario(usuario.getInt("id_usuario"), 
+                    usuario.getString("tipo_usuario"), usuario.getString("login"), 
+                    usuario.getInt("senha"));
+            return novoUsuario;
         } catch (SQLException add) {
             add.getMessage();
         }
-        return false;
+       return null;
     }
 
     public boolean listar(Usuario obj) {
-        boolean retListar = false;
+       boolean retListar = false;
 
         try {
             String mySql = "SELECT idUsuario, tipoUsuario FRON usuario ";
-            stmt = ConexaoDAO.getInstance().connect.prepareStatement(mySql);
+            stmt = ConexaoDAO.connect.prepareStatement(mySql);
             stmt.execute(mySql);
 
         } catch (SQLException add) {
@@ -50,19 +49,25 @@ public class UsuarioDAO {
         return false;
     }
 
-    public boolean atualizar(Usuario obj) {
-        boolean retAtualisar = false;
+    public Usuario atualizar(String tipoUsuario, String login, int senha) {
 
         try {
-            String mySql = "UPDATE usuario SET idUsuario=?,"
-                    + "tipoUsuario=?, login=?, senha=? WHERE= idUsuario";
-            stmt = connect.prepareStatement(mySql);
-            stmt.execute();
+            String sqlAtualiza = "UPDATE usuario SET tipoUsuario=?,"
+                    +"login=?, senha=? WHERE= idUsuario";
+            stmt = ConexaoDAO.connect.prepareStatement(sqlAtualiza);
+            stmt.setString(1, tipoUsuario);
+            stmt.setString(2, login);
+            stmt.setInt(3, senha);
+            ResultSet usuario = stmt.executeQuery();
 
-        } catch (SQLException add) {
+////            Usuario novoUsuario = new Usuario(usuario.getString("tipo_usuario"), 
+////                    usuario.getString("login"),
+////                    usuario.getInt("senha"));
+//            return novousuario ;
+        }catch (SQLException add) {
             add.getMessage();
         }
-        return false;
+       return null;
     }
 
     public Usuario logarUsuario(String login, int senha) {

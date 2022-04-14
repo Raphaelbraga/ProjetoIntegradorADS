@@ -22,7 +22,7 @@ public class Usuario {
         this.senha = senha;
     }
     
-    
+        
 
     public int getIdUsuario() {
         return idUsuario;
