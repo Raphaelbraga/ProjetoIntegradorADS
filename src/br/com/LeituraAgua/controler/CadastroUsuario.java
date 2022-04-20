@@ -14,7 +14,7 @@ import java.sql.ResultSet;
  * @author Usuario
  */
 public class CadastroUsuario {
-<<<<<<< HEAD
+
 
     PreparedStatement pst = null;
     ResultSet result = null;
@@ -41,8 +41,4 @@ public class CadastroUsuario {
     public void setMensagem(String mensagem) {
         this.mensagem = mensagem;
     }
-
-=======
-    //public cadastrar
->>>>>>> f2dc423f9bbb0e9971aea2209c53911149d824e2
 }

@@ -14,15 +14,15 @@ public class UsuarioDAO {
 
     private PreparedStatement stmt;
 
-    public Usuario cadastrar(String idUsuario,String tipoUsuario, String login, int senha) {
+    public Usuario cadastrar(Usuario obj) {
 
         try {
          String sqlcadastra = "INSERT INTO usuario (idUsuario, tipo_usuario,login, senha ) values (?, ?, ?)";
             stmt = ConexaoDAO.connect.prepareStatement(sqlcadastra);
-            stmt.setString(1, idUsuario);
-            stmt.setString(1, tipoUsuario);
-            stmt.setString(2, login);
-            stmt.setInt(3, senha);
+            stmt.setInt(1,obj.getIdUsuario());
+            stmt.setString(2, obj.getTipoUsuario());
+            stmt.setString(3, obj.getLogin());
+            stmt.setInt(4, obj.getSenha());
             ResultSet usuario = stmt.executeQuery();
             
             Usuario novoUsuario = new Usuario(usuario.getInt("id_usuario"), 
@@ -53,7 +53,7 @@ public class UsuarioDAO {
 
         try {
             String sqlAtualiza = "UPDATE usuario SET tipoUsuario=?,"
-                    +"login=?, senha=? WHERE= idUsuario";
+                    +"login=?, senha=? WHERE id_usuario = ?" ;
             stmt = ConexaoDAO.connect.prepareStatement(sqlAtualiza);
             stmt.setString(1, tipoUsuario);
             stmt.setString(2, login);
@@ -77,6 +77,26 @@ public class UsuarioDAO {
             stmt = con.connect.prepareStatement(sqlLogin);
             stmt.setString(1, login);
             stmt.setInt(2, senha);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Usuario usuario = new Usuario(rs.getInt("id_usuario"), rs.getString("tipo_usuario"), rs.getString("login"), rs.getInt("senha"));
+                return usuario;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+
+    }
+    
+    public Usuario listarPorUsuario(String login) {
+        String sqlLogin = "select * from usuario where login = ?";
+        try {
+            ConexaoDAO con = ConexaoDAO.getInstance();
+            stmt = con.connect.prepareStatement(sqlLogin);
+            stmt.setString(1, login);
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
