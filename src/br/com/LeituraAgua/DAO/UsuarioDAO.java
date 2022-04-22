@@ -7,6 +7,8 @@ package br.com.LeituraAgua.DAO;
 import br.com.model.Usuario;
 import static br.com.LeituraAgua.DAO.ConexaoDAO.connect;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 
@@ -17,7 +19,7 @@ public class UsuarioDAO {
     public Usuario cadastrar(Usuario obj) {
 
         try {
-         String sqlcadastra = "INSERT INTO usuario (idUsuario, tipo_usuario,login, senha ) values (?, ?, ?)";
+         String sqlcadastra = "INSERT INTO usuario (id_Usuario, tipo_usuario,login, senha ) values (?, ?, ?)";
             stmt = ConexaoDAO.connect.prepareStatement(sqlcadastra);
             stmt.setInt(1,obj.getIdUsuario());
             stmt.setString(2, obj.getTipoUsuario());
@@ -35,18 +37,24 @@ public class UsuarioDAO {
        return null;
     }
 
-    public boolean listar(Usuario obj) {
-       boolean retListar = false;
+    public List<Usuario> listar() {
+        List<Usuario> lista = new ArrayList<Usuario>();
+        String sqlListar = "SELECT* FRON usuario ";
 
         try {
-            String mySql = "SELECT idUsuario, tipoUsuario FRON usuario ";
-            stmt = ConexaoDAO.connect.prepareStatement(mySql);
-            stmt.execute(mySql);
-
+            stmt = ConexaoDAO.connect.prepareStatement(sqlListar);
+            ResultSet result = stmt.executeQuery();
+            
+            while (result.next()) {
+                Usuario obj = new Usuario();
+                obj.setIdUsuario(result.getInt("id_usuario"));
+                obj.setTipoUsuario(result.getString("tipo_usuario"));
+                lista.add(obj);
+            }
         } catch (SQLException add) {
-            add.getMessage();
+            lista = null;
         }
-        return false;
+            return lista;    
     }
 
     public Usuario atualizar(String tipoUsuario, String login, int senha) {
@@ -60,10 +68,6 @@ public class UsuarioDAO {
             stmt.setInt(3, senha);
             ResultSet usuario = stmt.executeQuery();
 
-////            Usuario novoUsuario = new Usuario(usuario.getString("tipo_usuario"), 
-////                    usuario.getString("login"),
-////                    usuario.getInt("senha"));
-//            return novousuario ;
         }catch (SQLException add) {
             add.getMessage();
         }
@@ -71,7 +75,7 @@ public class UsuarioDAO {
     }
 
     public Usuario logarUsuario(String login, int senha) {
-        String sqlLogin = "select * from usuario where login = ? and senha = ?";
+        String sqlLogin = "SELECT * FROM usuario where login = ? and senha = ?";
         try {
             ConexaoDAO con = ConexaoDAO.getInstance();
             stmt = con.connect.prepareStatement(sqlLogin);
@@ -92,7 +96,7 @@ public class UsuarioDAO {
     }
     
     public Usuario listarPorUsuario(String login) {
-        String sqlLogin = "select * from usuario where login = ?";
+        String sqlLogin = "SELECT * FROM usuario WHERE login = ?";
         try {
             ConexaoDAO con = ConexaoDAO.getInstance();
             stmt = con.connect.prepareStatement(sqlLogin);
@@ -109,6 +113,20 @@ public class UsuarioDAO {
         }
         return null;
 
+    }
+    
+    public Usuario deletar(Usuario obj) {
+        String sqlDel = "DELETE FROM detetive WHERE id_usuario =? ";
+        try {
+            ConexaoDAO con = ConexaoDAO.getInstance();
+            stmt = con.connect.prepareStatement(sqlDel);
+            stmt.setInt(1,obj.getIdUsuario());
+            stmt.executeUpdate();
+           
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

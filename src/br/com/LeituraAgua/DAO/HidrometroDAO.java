@@ -16,8 +16,8 @@ import java.util.ArrayList;
  */
 public class HidrometroDAO {
 
-    public boolean cadastrar(Hidrometro obj) {
-        boolean retorno = false;
+    public Hidrometro cadastrar(Hidrometro obj) {
+        
         try {
             stmt = connect.createStatement();
             String mysql = "INSERT INTO hidrometro id_hidrometro,leitura_instalacao"
