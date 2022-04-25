@@ -16,17 +16,17 @@ import java.util.ArrayList;
  */
 public class HidrometroDAO {
 
-    public Hidrometro cadastrar(Hidrometro obj) {
-        
-        try {
-            stmt = connect.createStatement();
-            String mysql = "INSERT INTO hidrometro id_hidrometro,leitura_instalacao"
-                    + " situacao, id_consumidor, id_endereco";
-
-            stmt.execute(mysql);
-        } catch (SQLException add) {
-            add.getMessage();
-        }
-        return false;
-    }
+//    public Hidrometro cadastrar(Hidrometro obj) {
+//        
+//        try {
+//            stmt = connect.createStatement();
+//            String mysql = "INSERT INTO hidrometro id_hidrometro,leitura_instalacao"
+//                    + " situacao, id_consumidor, id_endereco";
+//
+//            stmt.execute(mysql);
+//        } catch (SQLException add) {
+//            add.getMessage();
+//        }
+//        return false;
+//    }
 }

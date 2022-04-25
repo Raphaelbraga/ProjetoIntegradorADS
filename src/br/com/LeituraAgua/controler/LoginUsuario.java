@@ -21,13 +21,7 @@ public class LoginUsuario {
 
     public Usuario logarUsuario(String login, int senha){
          UsuarioDAO dao = new UsuarioDAO();
-        
-//        Usuario usuarioTeste = new Usuario();
-//        usuarioTeste.setLogin("admin2");
-//        usuarioTeste.setSenha(123456);
-//        usuarioTeste.setTipoUsuario("admin");
-//        dao.cadastrar(usuarioTeste);
-                
+
         Usuario usuario = dao.logarUsuario(login, senha);
         
         if (usuario != null){
@@ -44,13 +38,6 @@ public class LoginUsuario {
         
         return usuario;
     }
-    
-    public static void main(String[] args) {
-        LoginUsuario loginController = new LoginUsuario();
-        loginController.logarUsuario("admin2", 123456);
-        System.out.println(loginController.getMensagem());
-    }
-    
     public String getMensagem() {
         return mensagem;
     }
