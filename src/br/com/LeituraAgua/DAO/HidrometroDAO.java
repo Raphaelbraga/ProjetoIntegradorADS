@@ -16,6 +16,7 @@ import java.sql.Statement;
  */
 public class HidrometroDAO {
 
+
     private PreparedStatement stmt;
 
     public Hidrometro cadastrar(int idHidrometro, int leituraInstalacao, boolean situacao, Consumidor consumidor, Endereco endereco) {
