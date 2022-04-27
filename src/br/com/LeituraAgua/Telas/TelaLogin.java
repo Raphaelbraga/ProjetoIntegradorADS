@@ -6,7 +6,7 @@
 package br.com.LeituraAgua.Telas;
 import java.sql.*;
 import br.com.LeituraAgua.DAO.ConexaoDAO;
-import br.com.LeituraAgua.controler.LoginUsuario;
+import br.com.LeituraAgua.controler.UsuarioControler;
 import br.com.model.Usuario;
 import javax.swing.JOptionPane;
 
@@ -137,7 +137,7 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAcessarActionPerformed
-        LoginUsuario controller = new LoginUsuario();
+        UsuarioControler controller = new UsuarioControler();
         int senha = Integer.parseInt(new String(jPasswordFieldSenha.getPassword()));
         Usuario usuarioLogado = controller.logarUsuario(jTextFieldUsuario.getText(), senha);
         

@@ -8,6 +8,6 @@ package br.com.LeituraAgua.controler;
  *
  * @author Usuario
  */
-public class CadastroHidrometro {
+public class HidrometroControler {
     
 }
