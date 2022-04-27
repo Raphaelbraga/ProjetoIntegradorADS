@@ -9,7 +9,7 @@ import static br.com.LeituraAgua.DAO.ConexaoDAO.connect;
 import java.sql.*;
 
 
-
+ 
 public class UsuarioDAO {
 
     private PreparedStatement stmt;
