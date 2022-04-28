@@ -20,6 +20,10 @@ public class Distrito {
         this.cidade = cidade;
     }
 
+    public Distrito() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
     
     public int getIdDistrito() {
