@@ -5,28 +5,10 @@
  */
 package br.com.LeituraAgua.DAO;
 
-import br.com.model.Hidrometro;
-import static br.com.LeituraAgua.DAO.ConexaoDAO.connect;
-import java.sql.SQLException;
-import java.util.ArrayList;
-
 /**
  *
  * @author Usuario
  */
 public class HidrometroDAO {
 
-//    public Hidrometro cadastrar(Hidrometro obj) {
-//        
-//        try {
-//            stmt = connect.createStatement();
-//            String mysql = "INSERT INTO hidrometro id_hidrometro,leitura_instalacao"
-//                    + " situacao, id_consumidor, id_endereco";
-//
-//            stmt.execute(mysql);
-//        } catch (SQLException add) {
-//            add.getMessage();
-//        }
-//        return false;
-//    }
 }

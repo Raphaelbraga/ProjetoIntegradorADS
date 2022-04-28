@@ -36,7 +36,7 @@ public class UsuarioDAO {
     }
 
     public Usuario logarUsuario(String login, int senha) {
-        String sqlLogin = "SELECT * FROM usuario where login = ? and senha = ?";
+        String sqlLogin = "SELECT * FROM usuario where (login = ? and senha = ?)";
         try {
             ConexaoDAO con = ConexaoDAO.getInstance();
             stmt = ConexaoDAO.connect.prepareStatement(sqlLogin);

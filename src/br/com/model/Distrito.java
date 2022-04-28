@@ -5,6 +5,7 @@
  */
 package br.com.model;
 
+
 /**
  *
  * @author Cleumar
@@ -12,16 +13,18 @@ package br.com.model;
 public class Distrito {
     private int idDistrito;
     private String nomeDistrito;
-    private String cidade;
-
+    private String cidade;    
+    
+    
     public Distrito(int idDistrito, String nomeDistrito, String cidade) {
         this.idDistrito = idDistrito;
         this.nomeDistrito = nomeDistrito;
         this.cidade = cidade;
     }
 
-    
-    
+    public Distrito() {
+    }
+
     public int getIdDistrito() {
         return idDistrito;
     }
@@ -45,8 +48,11 @@ public class Distrito {
     public void setCidade(String cidade) {
         this.cidade = cidade;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Distrito{" + "idDistrito=" + idDistrito + ", nomeDistrito=" + nomeDistrito + ", cidade=" + cidade + '}';
+    }
     
     
 }
