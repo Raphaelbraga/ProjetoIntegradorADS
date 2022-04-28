@@ -23,6 +23,10 @@ public class Hidrometro {
         this.consumidor = consumidor;
         this.endereco = endereco;
     }
+
+    public Hidrometro() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 

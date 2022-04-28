@@ -23,7 +23,9 @@ public class Distrito {
     }
 
     public Distrito() {
+
     }
+
 
     public int getIdDistrito() {
         return idDistrito;
