@@ -29,7 +29,7 @@ public class HidrometroDAO {
             stmt.setBoolean(2, obj.isSituacao());
             stmt.setString(3, obj.getConsumidor().getIdConsumidor());
             stmt.setString(4, obj.getEndereco());
-            Resultset hidrometro = stmt.executeQuery();
+            ResultSet hidrometro stmt.executeQuery();
 
             Hidrometro novoHidrometro = new Hidrometro(hidrometro.getInt("leituraInstalacao"),
             hidrometro.getBoolean("situacao"),
