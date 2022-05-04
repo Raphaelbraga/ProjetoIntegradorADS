@@ -7,10 +7,8 @@ package br.com.LeituraAgua.DAO;
 
 
 import br.com.model.Hidrometro;
-import static br.com.LeituraAgua.DAO.ConexaoDAO.connect;
-import br.com.model.Endereco;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 
 /**
@@ -22,24 +20,21 @@ public class HidrometroDAO {
 
     private preparedStatement  stmt;
 
-    public Hidrometro cadastrar(int idHidrometro, int leituraInstalacao, boolean situacao, Consumidor consumidor, Endereco endereco) {
+    public Hidrometro cadastrar(Hidrometro obj) {
         try {
-            String sqlcadastra = "INSERT INTO hidrometro (idHidrometro, leituraInstalacao, situação, Consumidor, Endereco ) values (?, ?, ?, ?)";
+            String sqlcadastra = "INSERT INTO hidrometro ( leituraInstalacao, situação, Consumidor, Endereco ) values (?, ?, ?, ?)";
             ConexaoDAO conDao = ConexaoDAO.getInstance();
             stmt = conDao.connect.prepareStatement(sqlcadastra);
-            stmt.setInt(1, idHidrometro);
-            stmt.setInt(2, leituraInstalacao);
-            stmt.setBoolean(3, situacao);
-            stmt.setString(4, Consumidor);
-            stmt.setString(5, Endereco);
-            ResultSet hidrometro = stmt.executeQuery();
+            stmt.setInt(1, obj.getLeituraInstalacao());
+            stmt.setBoolean(2, obj.isSituacao());
+            stmt.setString(3, obj.getConsumidor().getIdConsumidor());
+            stmt.setString(4, obj.getEndereco());
+            Resultset hidrometro = stmt.executeQuery();
 
-            Hidrometro novoHidrometro = new Hidrometro();
-            hidrometro.getInt("id_hidrometro");
-            hidrometro.getInt("leituraInstalacao");
-            hidrometro.getBoolean("situacao");
-            hidrometro.getString("Consumidor");
-            hidrometro.getString("Endereco");
+            Hidrometro novoHidrometro = new Hidrometro(hidrometro.getInt("leituraInstalacao"),
+            hidrometro.getBoolean("situacao"),
+            hidrometro.getString("Consumidor"),
+            hidrometro.getString("Endereco"));
 
             return novoHidrometro;
 

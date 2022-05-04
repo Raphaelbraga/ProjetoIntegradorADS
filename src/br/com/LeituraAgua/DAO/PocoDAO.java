@@ -28,7 +28,7 @@ public class PocoDAO {
             stmt = conDao.connect.prepareStatement(sqlcadastra);
             stmt.setInt(1, obj.getIdPoco());
             stmt.setInt(2, obj.getUnidadeConsumidora());
-            stmt.setInt(3, obj.getIdDistrito());
+            stmt.setInt(3, obj.getDistrito().getIdDistrito());
             ResultSet poco = stmt.executeQuery();
             
             Distrito distritoPoco = new Distrito();
@@ -51,10 +51,21 @@ public class PocoDAO {
         try {
             ConexaoDAO conDAO = new ConexaoDAO();
             stmt= conDAO.connect.prepareStatement(sqlListar);
-            stmt.setInt(1, getIdPoco);
-            
-        } catch (Exception e) {
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Distrito distritoPoco = new Distrito();
+                distritoPoco.setIdDistrito(rs.getInt("id_distrito"));
+                Poco obj = new Poco();
+                obj.setIdPoco(rs.getInt("id_poco"));
+                obj.setUnidadeConsumidora(rs.getInt("unidade_consumidora"));
+                obj.setDistrito(distritoPoco);
+                listarId.add(obj);
+            }
+        } catch (SQLException add) {
+            listarId = null;
         }
+        return listarId;
         
     } 
 
