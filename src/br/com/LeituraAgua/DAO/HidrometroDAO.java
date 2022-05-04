@@ -6,6 +6,7 @@
 package br.com.LeituraAgua.DAO;
 
 
+import br.com.model.Consumidor;
 import br.com.model.Hidrometro;
 import java.sql.SQLException;
 import java.sql.*;
@@ -18,7 +19,7 @@ import java.sql.*;
 public class HidrometroDAO {
 
 
-    private preparedStatement  stmt;
+    private PreparedStatement  stmt;
 
     public Hidrometro cadastrar(Hidrometro obj) {
         try {
@@ -27,9 +28,12 @@ public class HidrometroDAO {
             stmt = conDao.connect.prepareStatement(sqlcadastra);
             stmt.setInt(1, obj.getLeituraInstalacao());
             stmt.setBoolean(2, obj.isSituacao());
-            stmt.setString(3, obj.getConsumidor().getIdConsumidor());
-            stmt.setString(4, obj.getEndereco());
-            Resultset hidrometro = stmt.executeQuery();
+            stmt.setString(3, obj.getConsumidor().getNome());
+            stmt.setString(4, obj.getEndereco().getRua());
+            ResultSet hidrometro = stmt.executeQuery();
+            
+            Consumidor consumidorHidro = new Consumidor();
+            consumidorHidro.setNome(hidrometro.getString("nome_consumidor"));
 
             Hidrometro novoHidrometro = new Hidrometro(hidrometro.getInt("leituraInstalacao"),
             hidrometro.getBoolean("situacao"),
