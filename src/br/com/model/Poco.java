@@ -14,13 +14,26 @@ public class Poco {
     private int unidadeConsumidora;
     private Distrito distrito;
 
+    public int getIdDistrito() {
+        return distrito.getIdDistrito();
+    }
+        
+    public String getNomeDistrito() {
+        return distrito.getNomeDistrito();
+    }
+
+    public String getCidade() {
+        return distrito.getCidade();
+    }
+
+    public Poco() {
+    }
+    
     public Poco(int idPoco, int unidadeConsumidora, Distrito distrito) {
         this.idPoco = idPoco;
         this.unidadeConsumidora = unidadeConsumidora;
         this.distrito = distrito;
     }
-    
-    
 
     public int getIdPoco() {
         return idPoco;
@@ -45,7 +58,11 @@ public class Poco {
     public void setDistrito(Distrito distrito) {
         this.distrito = distrito;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Poco{" + "idPoco=" + idPoco + ", unidadeConsumidora=" + unidadeConsumidora + ", distrito=" + distrito + '}';
+    }
     
     
 }

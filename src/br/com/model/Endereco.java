@@ -24,8 +24,21 @@ public class Endereco {
         this.complemento = complemento;
         this.distrito = distrito;
     }
-    
-    
+
+    public Endereco() {
+    }
+
+    public int getIdDistrito() {
+        return distrito.getIdDistrito();
+    }
+
+    public String getNomeDistrito() {
+        return distrito.getNomeDistrito();
+    }
+
+    public String getCidade() {
+        return distrito.getCidade();
+    }
 
     public int getIdEndereco() {
         return idEndereco;
