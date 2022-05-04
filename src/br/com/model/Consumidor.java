@@ -14,5 +14,55 @@ public class Consumidor {
     private String nome;
     private String cpf;
     private String contato;
+
+    public Consumidor() {
+    }
+
+    public Consumidor(int idConsumidor, String nome, String cpf, String contato) {
+        this.idConsumidor = idConsumidor;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.contato = contato;
+    }
+
+    public Consumidor(int aInt, String string, String string0, String string1, Consumidor novoConsumidor) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+    
+    public int getIdConsumidor() {
+        return idConsumidor;
+    }
+
+    public void setIdConsumidor(int idConsumidor) {
+        this.idConsumidor = idConsumidor;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getContato() {
+        return contato;
+    }
+
+    public void setContato(String contato) {
+        this.contato = contato;
+    }
+ 
+    
     
 }
