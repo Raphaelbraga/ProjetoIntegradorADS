@@ -8,6 +8,7 @@ package br.com.LeituraAgua.DAO;
 
 import br.com.model.Hidrometro;
 import static br.com.LeituraAgua.DAO.ConexaoDAO.connect;
+import br.com.model.Endereco;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -19,12 +20,13 @@ import java.sql.Statement;
 public class HidrometroDAO {
 
 
-    private PreparedStatement stmt;
+    private preparedStatement  stmt;
 
     public Hidrometro cadastrar(int idHidrometro, int leituraInstalacao, boolean situacao, Consumidor consumidor, Endereco endereco) {
         try {
             String sqlcadastra = "INSERT INTO hidrometro (idHidrometro, leituraInstalacao, situação, Consumidor, Endereco ) values (?, ?, ?, ?)";
-            stmt = ConexaoDAO.connect.prepareStatement(sqlcadastra);
+            ConexaoDAO conDao = ConexaoDAO.getInstance();
+            stmt = conDao.connect.prepareStatement(sqlcadastra);
             stmt.setInt(1, idHidrometro);
             stmt.setInt(2, leituraInstalacao);
             stmt.setBoolean(3, situacao);

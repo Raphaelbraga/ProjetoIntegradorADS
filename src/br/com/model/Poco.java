@@ -25,6 +25,9 @@ public class Poco {
     public String getCidade() {
         return distrito.getCidade();
     }
+
+    public Poco() {
+    }
     
     public Poco(int idPoco, int unidadeConsumidora, Distrito distrito) {
         this.idPoco = idPoco;

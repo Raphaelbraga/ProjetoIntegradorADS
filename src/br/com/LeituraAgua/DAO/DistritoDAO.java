@@ -28,9 +28,8 @@ public class DistritoDAO {
              try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
             if (generatedKeys.next()) {
                 dist.setIdDistrito(generatedKeys.getInt(1));
-                
-                //return listaPorId(dist.getIdDistrito());
                 System.out.println("id:"+ dist.getIdDistrito());
+                return dist;   
             }
             else {
                 throw new SQLException("Creating user failed, no ID obtained.");
@@ -46,8 +45,8 @@ public class DistritoDAO {
     public Distrito listarPorNome(String nome) {
         String sqlListar = "SELECT * FROM distrito WHERE nome = ?";
         try {
-            ConexaoDAO con = ConexaoDAO.getInstance();
-            stmt = con.connect.prepareStatement(sqlListar);
+            ConexaoDAO conDao = ConexaoDAO.getInstance();
+            stmt = conDao.connect.prepareStatement(sqlListar);
             stmt.setString(1, nome);
             ResultSet rs = stmt.executeQuery();
 
@@ -61,13 +60,13 @@ public class DistritoDAO {
         return null;
     }
  
-    public static void main(String[] args) {
-        Distrito dist = new Distrito();
-        dist.setNomeDistrito("sobradinho");
-        dist.setCidade("Toledo");
-        
-        DistritoDAO dao = new DistritoDAO();
-        dao.cadastrar(dist);
-    }
+//    public static void main(String[] args) {
+//        Distrito dist = new Distrito();
+//        dist.setNomeDistrito("sobradinho");
+//        dist.setCidade("Toledo");
+//        
+//        DistritoDAO dao = new DistritoDAO();
+//        dao.cadastrar(dist);
+//    }
           
 }

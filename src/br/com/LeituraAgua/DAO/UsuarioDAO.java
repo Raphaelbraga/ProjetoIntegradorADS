@@ -5,7 +5,6 @@
 package br.com.LeituraAgua.DAO;
 
 import br.com.model.Usuario;
-import static br.com.LeituraAgua.DAO.ConexaoDAO.connect;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,16 +17,15 @@ public class UsuarioDAO {
     public Usuario cadastrar(Usuario obj) {
 
         try {
-            String sqlcadastra = "INSERT INTO usuario (id_Usuario, tipo_usuario,login, senha ) values (?, ?, ?)";
+            String sqlcadastra = "INSERT INTO usuario (tipo_usuario,login, senha ) values (?, ?, ?)";
             stmt = ConexaoDAO.connect.prepareStatement(sqlcadastra);
-            stmt.setInt(1, obj.getIdUsuario());
-            stmt.setString(2, obj.getTipoUsuario());
-            stmt.setString(3, obj.getLogin());
-            stmt.setInt(4, obj.getSenha());
+            stmt.setString(1, obj.getTipoUsuario());
+            stmt.setString(2, obj.getLogin());
+            stmt.setInt(3, obj.getSenha());
             ResultSet usuario = stmt.executeQuery();
 
-            Usuario novoUsuario = new Usuario(usuario.getInt("id_usuario"),
-                    usuario.getString("tipo_usuario"), usuario.getString("login"),
+            Usuario novoUsuario = new Usuario(usuario.getString("tipo_usuario"),
+                    usuario.getString("login"),
                     usuario.getInt("senha"));
             return novoUsuario;
         } catch (SQLException add) {

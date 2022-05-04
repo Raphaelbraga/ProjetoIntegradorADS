@@ -25,10 +25,7 @@ public class Hidrometro {
     }
 
     public Hidrometro() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    
+    }    
 
     public int getIdHidrometro() {
         return idHidrometro;
@@ -69,7 +66,11 @@ public class Hidrometro {
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Hidrometro{" + "idHidrometro=" + idHidrometro + ", leituraInstalacao=" + leituraInstalacao + ", situacao=" + situacao + ", consumidor=" + consumidor + ", endereco=" + endereco + '}';
+    }
     
     
 }

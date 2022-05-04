@@ -8,6 +8,8 @@ import br.com.model.Distrito;
 import br.com.model.Poco;
 import java.sql.PreparedStatement;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -22,7 +24,8 @@ public class PocoDAO {
         try {
             
             String sqlcadastra = "INSERT INTO poco (id_poco, unidade_consumidora,id_distrito) values (?, ?, ?)";
-            stmt = ConexaoDAO.connect.prepareStatement(sqlcadastra);
+            ConexaoDAO conDao = ConexaoDAO.getInstance();
+            stmt = conDao.connect.prepareStatement(sqlcadastra);
             stmt.setInt(1, obj.getIdPoco());
             stmt.setInt(2, obj.getUnidadeConsumidora());
             stmt.setInt(3, obj.getIdDistrito());
@@ -40,5 +43,19 @@ public class PocoDAO {
         }
         return null;
     }
+    
+    public List <Poco> listarPoco(){
+        List<Poco> listarId = new ArrayList<Poco>();
+        String sqlListar = "SELECT from poco where id_poco";
+        
+        try {
+            ConexaoDAO conDAO = new ConexaoDAO();
+            stmt= conDAO.connect.prepareStatement(sqlListar);
+            stmt.setInt(1, getIdPoco);
+            
+        } catch (Exception e) {
+        }
+        
+    } 
 
 }

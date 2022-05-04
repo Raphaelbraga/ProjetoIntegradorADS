@@ -23,7 +23,8 @@ public class EnderecoDAO {
 
         try {
             String sqlcadastra = "INSERT INTO endereco (int id_endereco, String rua, int numero, String complemento, id_distrito ) values (?,?,?,?,?)";
-            stmt = ConexaoDAO.connect.prepareStatement(sqlcadastra);
+            ConexaoDAO conDao = ConexaoDAO.getInstance();
+            stmt = conDao.connect.prepareStatement(sqlcadastra);
             stmt.setInt(1, obj.getIdEndereco());
             stmt.setString(2, obj.getRua());
             stmt.setInt(3, obj.getNumero());
@@ -52,7 +53,8 @@ public class EnderecoDAO {
         String sqlListar = "SELECT * FROM endereco ";
 
         try {
-            stmt = ConexaoDAO.connect.prepareStatement(sqlListar);
+            ConexaoDAO conDao = ConexaoDAO.getInstance();
+            stmt = conDao.connect.prepareStatement(sqlListar);
             ResultSet result = stmt.executeQuery();
 
             while (result.next()) {
@@ -77,7 +79,8 @@ public class EnderecoDAO {
         try {
             String sqlAtualiza = "UPDATE endereco SET (rua=?,"
                     + "numero=?, complemento=?, id_distrito=?)  WHERE id_endereco = ?";
-            stmt = ConexaoDAO.connect.prepareStatement(sqlAtualiza);
+            ConexaoDAO conDao = ConexaoDAO.getInstance();
+            stmt = conDao.connect.prepareStatement(sqlAtualiza);
             stmt.setString(1, obj.getRua());
             stmt.setInt(2, obj.getNumero());
             stmt.setString(3, obj.getComplemento());
@@ -93,8 +96,8 @@ public class EnderecoDAO {
     public Endereco deletar(Endereco obj) {
         String sqlDel = "DELETE FROM detetive WHERE id_endereco =? ";
         try {
-            ConexaoDAO con = ConexaoDAO.getInstance();
-            stmt = con.connect.prepareStatement(sqlDel);
+            ConexaoDAO conDao = ConexaoDAO.getInstance();
+            stmt = conDao.connect.prepareStatement(sqlDel);
             stmt.setInt(1, obj.getIdEndereco());
             stmt.executeUpdate();
 

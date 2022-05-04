@@ -22,8 +22,12 @@ public class Usuario {
         this.senha = senha;
     }
     
-        
+    public Usuario() {
+    }
 
+    public Usuario(String string, String string0, int aInt) {
+    }
+    
     public int getIdUsuario() {
         return idUsuario;
     }
@@ -61,8 +65,6 @@ public class Usuario {
         return "Usuario{" + "idUsuario=" + idUsuario + ", tipoUsuario=" + tipoUsuario + ", login=" + login + ", senha=" + senha + '}';
     }
 
-    public Usuario() {
-    }
     
     
     
