@@ -27,6 +27,10 @@ public class Leitura {
         this.hidrometro = hidrometro;
         this.usuario = usuario;
     }
+
+    public Leitura(int aInt, java.sql.Date date, int aInt0, int aInt1, Hidrometro leituraHidrometro) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 
