@@ -27,8 +27,6 @@ public class Hidrometro {
     public Hidrometro() {
     }    
     
-    
-    
     // gerado delegate methods
     public int getIdConsumidor() {
         return consumidor.getIdConsumidor();
