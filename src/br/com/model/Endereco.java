@@ -26,10 +26,19 @@ public class Endereco {
     }
 
     public Endereco() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
+
+    public int getIdDistrito() {
+        return distrito.getIdDistrito();
+    }
+
+    public String getNomeDistrito() {
+        return distrito.getNomeDistrito();
+    }
+
+    public String getCidade() {
+        return distrito.getCidade();
+    }
 
     public int getIdEndereco() {
         return idEndereco;

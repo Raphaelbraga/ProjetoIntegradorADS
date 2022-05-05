@@ -23,6 +23,10 @@ public class Despesa {
         this.valorFaturaEnergia = valorFaturaEnergia;
         this.poco = poco;
     }
+
+    public Despesa() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 
@@ -56,6 +60,10 @@ public class Despesa {
 
     public void setPoco(Poco poco) {
         this.poco = poco;
+    }
+
+    public Object getpoco() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

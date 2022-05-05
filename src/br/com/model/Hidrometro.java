@@ -25,11 +25,51 @@ public class Hidrometro {
     }
 
     public Hidrometro() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }    
+    
+    // gerado delegate methods
+    public int getIdConsumidor() {
+        return consumidor.getIdConsumidor();
+    }
+
+    public String getNome() {
+        return consumidor.getNome();
+    }
+
+    public String getCpf() {
+        return consumidor.getCpf();
+    }
+
+    public int getIdDistrito() {
+        return endereco.getIdDistrito();
+    }
+
+    public String getNomeDistrito() {
+        return endereco.getNomeDistrito();
+    }
+
+    public String getCidade() {
+        return endereco.getCidade();
+    }
+
+    public int getIdEndereco() {
+        return endereco.getIdEndereco();
+    }
+
+    public String getRua() {
+        return endereco.getRua();
+    }
+
+    public int getNumero() {
+        return endereco.getNumero();
+    }
+
+    public Distrito getDistrito() {
+        return endereco.getDistrito();
     }
     
     
-
+    //gerado get and sets
     public int getIdHidrometro() {
         return idHidrometro;
     }
@@ -69,7 +109,10 @@ public class Hidrometro {
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Hidrometro{" + "idHidrometro=" + idHidrometro + ", leituraInstalacao=" + leituraInstalacao + ", situacao=" + situacao + ", consumidor=" + consumidor + ", endereco=" + endereco + '}';
+    } 
     
 }

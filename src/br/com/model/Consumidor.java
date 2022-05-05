@@ -10,6 +10,7 @@ package br.com.model;
  * @author Cleumar
  */
 public class Consumidor {
+
     private int idConsumidor;
     private String nome;
     private String cpf;
@@ -25,12 +26,6 @@ public class Consumidor {
         this.contato = contato;
     }
 
-    public Consumidor(int aInt, String string, String string0, String string1, Consumidor novoConsumidor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
-    
     public int getIdConsumidor() {
         return idConsumidor;
     }
@@ -62,7 +57,10 @@ public class Consumidor {
     public void setContato(String contato) {
         this.contato = contato;
     }
- 
-    
-    
+
+    @Override
+    public String toString() {
+        return "Consumidor{" + "idConsumidor=" + idConsumidor + ", nome=" + nome + ", cpf=" + cpf + ", contato=" + contato + '}';
+    }
+
 }

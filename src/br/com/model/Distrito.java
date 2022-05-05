@@ -5,6 +5,7 @@
  */
 package br.com.model;
 
+
 /**
  *
  * @author Cleumar
@@ -12,8 +13,9 @@ package br.com.model;
 public class Distrito {
     private int idDistrito;
     private String nomeDistrito;
-    private String cidade;
-
+    private String cidade;    
+    
+    
     public Distrito(int idDistrito, String nomeDistrito, String cidade) {
         this.idDistrito = idDistrito;
         this.nomeDistrito = nomeDistrito;
@@ -21,11 +23,10 @@ public class Distrito {
     }
 
     public Distrito() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
-    
-    
+
     public int getIdDistrito() {
         return idDistrito;
     }
@@ -49,8 +50,11 @@ public class Distrito {
     public void setCidade(String cidade) {
         this.cidade = cidade;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Distrito{" + "idDistrito=" + idDistrito + ", nomeDistrito=" + nomeDistrito + ", cidade=" + cidade + '}';
+    }
     
     
 }
