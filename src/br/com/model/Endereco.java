@@ -32,12 +32,28 @@ public class Endereco {
         return distrito.getIdDistrito();
     }
 
+    public void setIdDistrito(int idDistrito) {
+        distrito.setIdDistrito(idDistrito);
+    }
+
     public String getNomeDistrito() {
         return distrito.getNomeDistrito();
     }
 
+    public void setNomeDistrito(String nomeDistrito) {
+        distrito.setNomeDistrito(nomeDistrito);
+    }
+
     public String getCidade() {
         return distrito.getCidade();
+    }
+
+    public void setCidade(String cidade) {
+        distrito.setCidade(cidade);
+    }
+
+    public String toString() {
+        return distrito.toString();
     }
 
     public int getIdEndereco() {
@@ -79,6 +95,7 @@ public class Endereco {
     public void setDistrito(Distrito distrito) {
         this.distrito = distrito;
     }
+
     
     
     

@@ -6,8 +6,7 @@
 package br.com.LeituraAgua.DAO;
 
 
-import br.com.model.Consumidor;
-import br.com.model.Hidrometro;
+import br.com.model.*;
 import java.sql.SQLException;
 import java.sql.*;
 
@@ -26,19 +25,22 @@ public class HidrometroDAO {
             String sqlcadastra = "INSERT INTO hidrometro ( leituraInstalacao, situação, Consumidor, Endereco ) values (?, ?, ?, ?)";
             ConexaoDAO conDao = ConexaoDAO.getInstance();
             stmt = conDao.connect.prepareStatement(sqlcadastra);
-            stmt.setInt(1, obj.getLeituraInstalacao());
-            stmt.setBoolean(2, obj.isSituacao());
-            stmt.setString(3, obj.getConsumidor().getNome());
-            stmt.setString(4, obj.getEndereco().getRua());
+            stmt.setInt(1, obj.getIdHidrometro());
+            stmt.setInt(2, obj.getLeituraInstalacao());
+            stmt.setBoolean(3, obj.isSituacao());
+            stmt.setString(4, obj.getConsumidor().getNome());
+            stmt.setString(5, obj.getEndereco().getRua());
             ResultSet hidrometro = stmt.executeQuery();
             
             Consumidor consumidorHidro = new Consumidor();
-            consumidorHidro.setNome(hidrometro.getString("nome_consumidor"));
+            
+            Endereco enderecohidro = new Endereco();
 
-            Hidrometro novoHidrometro = new Hidrometro(hidrometro.getInt("leituraInstalacao"),
+            Hidrometro novoHidrometro = new Hidrometro(hidrometro.getInt("id_hidrometro"),
+            hidrometro.getInt("leituraInstalacao"),
             hidrometro.getBoolean("situacao"),
-            hidrometro.getString("Consumidor"),
-            hidrometro.getString("Endereco"));
+            consumidorHidro,
+            enderecohidro);
 
             return novoHidrometro;
 
