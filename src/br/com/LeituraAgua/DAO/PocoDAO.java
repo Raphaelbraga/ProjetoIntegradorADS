@@ -5,6 +5,7 @@
 package br.com.LeituraAgua.DAO;
 
 import br.com.model.Distrito;
+import br.com.model.Endereco;
 import br.com.model.Poco;
 import java.sql.PreparedStatement;
 import java.sql.*;
@@ -18,55 +19,113 @@ import java.util.List;
 public class PocoDAO {
 
     private PreparedStatement stmt;
-    
+
     public Poco cadastrar(Poco obj) {
-       
+
         try {
-            
-            String sqlcadastra = "INSERT INTO poco (id_poco, unidade_consumidora,id_distrito) values (?, ?, ?)";
+
+            String sqlcadastra = "INSERT INTO poco ( unidade_consumidora,id_distrito) values (?, ?)";
             ConexaoDAO conDao = ConexaoDAO.getInstance();
-            stmt = conDao.connect.prepareStatement(sqlcadastra);
-            stmt.setInt(1, obj.getIdPoco());
-            stmt.setInt(2, obj.getUnidadeConsumidora());
-            stmt.setInt(3, obj.getDistrito().getIdDistrito());
-            ResultSet poco = stmt.executeQuery();
-            
-            Distrito distritoPoco = new Distrito();
-            distritoPoco.setIdDistrito(poco.getInt("id_distrito"));
-            
-            Poco novoPoco = new Poco (poco.getInt("id_poco"),
-                    poco.getInt("unidade_consumidora"),distritoPoco );
-            return novoPoco;
-            
+            stmt = conDao.connect.prepareStatement(sqlcadastra, Statement.RETURN_GENERATED_KEYS);
+            stmt.setInt(1, obj.getUnidadeConsumidora());
+            stmt.setInt(2, obj.getDistrito().getIdDistrito());
+            stmt.executeUpdate();
+
+            try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    return listarPorId(generatedKeys.getInt(1));
+                } else {
+                    throw new SQLException("Ocorreu um erro ao cadastrar o endereço!");
+                }
+            }
+
         } catch (SQLException add) {
             add.getMessage();
         }
         return null;
     }
-    
-    public List <Poco> listarPoco(){
-        List<Poco> listarId = new ArrayList<Poco>();
-        String sqlListar = "SELECT from poco where id_poco";
-        
+
+    public Poco listarPorId(Integer id) {
+        String sqlListar = "SELECT * FROM poco WHERE id = ?";
         try {
-            ConexaoDAO conDAO = new ConexaoDAO();
-            stmt= conDAO.connect.prepareStatement(sqlListar);
+            ConexaoDAO conDao = ConexaoDAO.getInstance();
+            stmt = conDao.connect.prepareStatement(sqlListar);
+            stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
 
+            DistritoDAO distDao = new DistritoDAO();
+
             while (rs.next()) {
-                Distrito distritoPoco = new Distrito();
-                distritoPoco.setIdDistrito(rs.getInt("id_distrito"));
+
                 Poco obj = new Poco();
                 obj.setIdPoco(rs.getInt("id_poco"));
                 obj.setUnidadeConsumidora(rs.getInt("unidade_consumidora"));
-                obj.setDistrito(distritoPoco);
-                listarId.add(obj);
+                obj.setDistrito(distDao.listarPorId(rs.getInt("id_distrito")));
+
+                return obj;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<Poco> listar() {
+        List<Poco> lista = new ArrayList<Poco>();
+        String sqlListar = "SELECT * FROM poco ";
+
+        try {
+            ConexaoDAO conDao = ConexaoDAO.getInstance();
+            stmt = conDao.connect.prepareStatement(sqlListar);
+            ResultSet rs = stmt.executeQuery();
+
+            DistritoDAO distDao = new DistritoDAO();
+
+            while (rs.next()) {
+
+                Poco obj = new Poco();
+                obj.setIdPoco(rs.getInt("id_poco"));
+                obj.setUnidadeConsumidora(rs.getInt("unidade_consumidora"));
+                obj.setDistrito(distDao.listarPorId(rs.getInt("id_distrito")));
+                lista.add(obj);
             }
         } catch (SQLException add) {
-            listarId = null;
+            lista = null;
         }
-        return listarId;
-        
-    } 
+        return lista;
+    }
 
+    public Poco atualizar(Poco obj) {
+        try {
+            String sqlAtualiza = "UPDATE poco SET (unidade_consumidora=?,"
+                    + "id_distrito=?)  WHERE id_poco = ?";
+            ConexaoDAO conDao = ConexaoDAO.getInstance();
+            stmt = conDao.connect.prepareStatement(sqlAtualiza);
+            stmt.setInt(1, obj.getUnidadeConsumidora());
+            stmt.setInt(2, obj.getDistrito().getIdDistrito());
+            stmt.setInt(3, obj.getIdPoco());
+            stmt.executeUpdate();
+            
+            return listarPorId(obj.getIdPoco());
+
+        } catch (SQLException add) {
+            add.getMessage();
+        }
+        return null;
+    }
+
+    public void deletar(Poco obj) {
+        String sqlDel = "DELETE FROM poco WHERE id_poco =? ";
+        try {
+            ConexaoDAO conDao = ConexaoDAO.getInstance();
+            stmt = conDao.connect.prepareStatement(sqlDel);
+            stmt.setInt(1, obj.getIdPoco());
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 }

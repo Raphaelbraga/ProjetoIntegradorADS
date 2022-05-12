@@ -5,8 +5,11 @@
 package br.com.LeituraAgua.DAO;
 
 import br.com.model.Distrito;
+import br.com.model.Endereco;
 import java.sql.PreparedStatement;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -75,12 +78,60 @@ public class DistritoDAO {
         return null;
     }
 
-//    public static void main(String[] args) {
-//        Distrito dist = new Distrito();
-//        dist.setNomeDistrito("sobradinho");
-//        dist.setCidade("Toledo");
-//        
-//        DistritoDAO dao = new DistritoDAO();
-//        dao.cadastrar(dist);
-//    }
+    public List<Distrito> listar() {
+        List<Distrito> lista = new ArrayList<Distrito>();
+        String sqlListar = "SELECT * FROM distrito ";
+
+        try {
+            ConexaoDAO conDao = ConexaoDAO.getInstance();
+            stmt = conDao.connect.prepareStatement(sqlListar);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+
+                Distrito obj = new Distrito();
+                obj.setIdDistrito(rs.getInt("id_distrito"));
+                obj.setNomeDistrito(rs.getString("nome_distrito"));
+                obj.setCidade(rs.getString("cidade"));
+
+                lista.add(obj);
+            }
+
+        } catch (SQLException add) {
+            lista = null;
+        }
+        return lista;
+    }
+
+    public Distrito atualizar(Distrito obj) {
+        try {
+            String sqlAtualiza = "UPDATE distrito SET (nome_distrito=?,"
+                    + "cidade=?)  WHERE id_distrito = ?";
+            ConexaoDAO conDao = ConexaoDAO.getInstance();
+            stmt = conDao.connect.prepareStatement(sqlAtualiza);
+            stmt.setString(1, obj.getNomeDistrito());
+            stmt.setString(2, obj.getCidade());
+            stmt.setInt(5, obj.getIdDistrito());
+            stmt.executeUpdate();
+
+            return listarPorId(obj.getIdDistrito());
+
+        } catch (SQLException add) {
+            add.getMessage();
+        }
+        return null;
+    }
+
+    public void deletar(Distrito obj) {
+        String sqlDel = "DELETE FROM distrito WHERE id_distrito =? ";
+        try {
+            ConexaoDAO conDao = ConexaoDAO.getInstance();
+            stmt = conDao.connect.prepareStatement(sqlDel);
+            stmt.setInt(1, obj.getIdDistrito());
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

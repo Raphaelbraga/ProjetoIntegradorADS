@@ -14,6 +14,9 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -26,35 +29,122 @@ private PreparedStatement stmt;
     public Leitura cadastrar(Leitura obj) {
 
         try {
-            String sqlcadastra = "INSERT INTO leitura (id_leitura, mes_referencia,leitura_mes_anterior,leitura_mes_atual, id_hidrometro, id_usuario ) values (?,?,?,?,?,?)";
+            String sqlcadastra = "INSERT INTO leitura (mes_referencia,leitura_mes_anterior,leitura_mes_atual, id_hidrometro, id_usuario ) values (?,?,?,?,?,?)";
             ConexaoDAO conDao = ConexaoDAO.getInstance();
-            stmt = conDao.connect.prepareStatement(sqlcadastra);
-            stmt.setInt(1, obj.getIdLeitura());
-            stmt.setDate(2, (Date) obj.getMesReferencia());
-            stmt.setInt(3, obj.getLeituraMesAnterior());
-            stmt.setInt(4, obj.getLeituraMesAtual());
-            stmt.setInt(5, obj.getHidrometro().getIdHidrometro());
+            stmt = conDao.connect.prepareStatement(sqlcadastra, Statement.RETURN_GENERATED_KEYS);            
+            stmt.setDate(1, (Date) obj.getMesReferencia());
+            stmt.setInt(2, obj.getLeituraMesAnterior());
+            stmt.setInt(3, obj.getLeituraMesAtual());
+            stmt.setInt(4, obj.getHidrometro().getIdHidrometro());
             stmt.setInt(5, obj.getUsuario().getIdUsuario());
-            ResultSet leitura = stmt.executeQuery();
+            stmt.executeUpdate();
 
-            Hidrometro leituraHidrometro = new Hidrometro();
-            leituraHidrometro.setIdHidrometro(leitura.getInt("id_hidrometro"));
-            
-            Usuario leituraUsuario = new Usuario();
-            leituraUsuario.setIdUsuario(leitura.getInt("id_usuario"));
+            try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    return listarPorId(generatedKeys.getInt(1));
+                } else {
+                    throw new SQLException("Ocorreu um erro ao cadastrar o endereço!");
+                }
+            }
 
-            Leitura novoLeitura = new Leitura(leitura.getInt("id_leitura"),
-                    leitura.getDate("mes_referencia"),
-                    leitura.getInt("leitura_mes_anterior"),
-                    leitura.getInt("leitura_mes_atual"),
-                    leituraHidrometro,
-                    leituraUsuario);
-
-            return novoLeitura;
         } catch (SQLException add) {
             add.getMessage();
         }
         return null;
-    }    
+    }
     
+    
+    public Leitura listarPorId(Integer id) {
+        String sqlListar = "SELECT * FROM leitura WHERE id = ?";
+        try {
+            ConexaoDAO conDao = ConexaoDAO.getInstance();
+            stmt = conDao.connect.prepareStatement(sqlListar);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            HidrometroDAO leiDao = new HidrometroDAO();
+            UsuarioDAO leDao = new UsuarioDAO();
+            while (rs.next()) {
+
+                Leitura obj = new Leitura();
+                obj.setDateMesReferencia(rs.getDate("mes_referencia"));
+                obj.setLeituraMesAnterior(rs.getInt("leitura_mes_anterior"));
+                obj.setLeituraMesAtual(rs.getInt("leitura_mes_atual"));          
+                obj.setHidrometro(leiDao.listarPorId(rs.getInt("id_hidrometro")));
+                obj.setUsuario(leDao.listarPorId(rs.getInt("id_usuario")));
+                return obj;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    } 
+    
+    
+    public List<Leitura> listar() {
+        List<Leitura> lista = new ArrayList<Leitura>();
+        String sqlListar = "SELECT * FROM leitura ";
+
+        try {
+            ConexaoDAO conDao = ConexaoDAO.getInstance();
+            stmt = conDao.connect.prepareStatement(sqlListar);
+            ResultSet rs = stmt.executeQuery();
+
+            HidrometroDAO leiDao = new HidrometroDAO();
+            UsuarioDAO leDao = new UsuarioDAO();
+            
+            while (rs.next()) {
+
+                Leitura obj = new Leitura();
+                obj.setDateMesReferencia(rs.getDate("mes_referencia"));
+                obj.setLeituraMesAnterior(rs.getInt("leitura_mes_anterior"));
+                obj.setLeituraMesAtual(rs.getInt("leitura_mes_atual"));          
+                obj.setHidrometro(leiDao.listarPorId(rs.getInt("id_hidrometro")));
+                obj.setUsuario(leDao.listarPorId(rs.getInt("id_usuario")));
+                lista.add(obj);
+                
+            }
+        } catch (SQLException add) {
+            lista = null;
+        }
+        return lista;
+    }
+
+
+    
+    public Leitura atualizar(Leitura obj) {
+        try {
+            String sqlAtualiza = "UPDATE leitura SET (mes_referencia=?,"
+                    + "leitura_mes_anterior=?, leitura_mes_atual=?, id_hidrometro=?, id_usuario=?)  WHERE id_leitura = ?";
+            ConexaoDAO conDao = ConexaoDAO.getInstance();
+            stmt = conDao.connect.prepareStatement(sqlAtualiza);
+            stmt.setDate(1, (Date) obj.getMesReferencia());
+            stmt.setInt(2, obj.getLeituraMesAnterior());
+            stmt.setInt(3, obj.getLeituraMesAtual());
+            stmt.setInt(4, obj.getHidrometro().getIdHidrometro());
+            stmt.setInt(5, obj.getUsuario().getIdUsuario());
+            stmt.executeUpdate();
+            
+            return listarPorId(obj.getIdLeitura());
+
+        } catch (SQLException add) {
+            add.getMessage();
+        }
+        return null;
+    }
+
+    public void deletar(Leitura obj) {
+        String sqlDel = "DELETE FROM leitura WHERE id_leitura =? ";
+        try {
+            ConexaoDAO conDao = ConexaoDAO.getInstance();
+            stmt = conDao.connect.prepareStatement(sqlDel);
+            stmt.setInt(1, obj.getIdLeitura());
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    
+    }    
 }

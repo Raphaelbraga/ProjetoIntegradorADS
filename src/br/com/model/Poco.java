@@ -58,6 +58,7 @@ public class Poco {
     public void setDistrito(Distrito distrito) {
         this.distrito = distrito;
     }
+  
 
     @Override
     public String toString() {
@@ -65,6 +66,10 @@ public class Poco {
     }
 
     public void setIdpoco(int aInt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Object getPoco() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

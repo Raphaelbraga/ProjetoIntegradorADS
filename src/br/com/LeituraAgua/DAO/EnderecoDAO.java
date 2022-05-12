@@ -15,21 +15,23 @@ import java.sql.*;
  *
  * @author Cleumar
  */
+ @SuppressWarnings("static-access")
+ 
 public class EnderecoDAO {
 
     private PreparedStatement stmt;
 
+   
     public Endereco cadastrar(Endereco obj) {
 
         try {
-            String sqlcadastra = "INSERT INTO endereco (id_endereco, rua,  numero, complemento, id_distrito ) values (?,?,?,?,?)";
+            String sqlcadastra = "INSERT INTO endereco ( rua,  numero, complemento, id_distrito ) values (?,?,?,?)";
             ConexaoDAO conDao = ConexaoDAO.getInstance();
-            stmt = conDao.connect.prepareStatement(sqlcadastra, Statement.RETURN_GENERATED_KEYS);
-            stmt.setInt(1, obj.getIdEndereco());
-            stmt.setString(2, obj.getRua());
-            stmt.setInt(3, obj.getNumero());
-            stmt.setString(4, obj.getComplemento());
-            stmt.setInt(5, obj.getDistrito().getIdDistrito());
+            stmt = conDao.connect.prepareStatement(sqlcadastra, Statement.RETURN_GENERATED_KEYS);           
+            stmt.setString(1, obj.getRua());
+            stmt.setInt(2, obj.getNumero());
+            stmt.setString(3, obj.getComplemento());
+            stmt.setInt(4, obj.getDistrito().getIdDistrito());
             stmt.executeUpdate();
 
             try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
@@ -111,8 +113,11 @@ public class EnderecoDAO {
             stmt.setString(1, obj.getRua());
             stmt.setInt(2, obj.getNumero());
             stmt.setString(3, obj.getComplemento());
-            stmt.setInt(2, obj.getDistrito().getIdDistrito());
-            ResultSet endereco = stmt.executeQuery();
+            stmt.setInt(4, obj.getDistrito().getIdDistrito());
+            stmt.setInt(5,obj.getIdEndereco());
+            stmt.executeUpdate();
+            
+            return listarPorId(obj.getIdEndereco());
 
         } catch (SQLException add) {
             add.getMessage();
@@ -120,8 +125,8 @@ public class EnderecoDAO {
         return null;
     }
 
-    public Endereco deletar(Endereco obj) {
-        String sqlDel = "DELETE FROM detetive WHERE id_endereco =? ";
+    public void deletar(Endereco obj) {
+        String sqlDel = "DELETE FROM endereco WHERE id_endereco =? ";
         try {
             ConexaoDAO conDao = ConexaoDAO.getInstance();
             stmt = conDao.connect.prepareStatement(sqlDel);
@@ -131,7 +136,7 @@ public class EnderecoDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+    
     }
 
 }

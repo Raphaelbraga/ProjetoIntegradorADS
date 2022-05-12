@@ -31,6 +31,10 @@ public class Leitura {
     public Leitura(int aInt, java.sql.Date date, int aInt0, int aInt1, Hidrometro leituraHidrometro) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    public Leitura() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 
@@ -80,6 +84,10 @@ public class Leitura {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public void setDateMesReferencia(java.sql.Date date) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

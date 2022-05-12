@@ -6,12 +6,13 @@
 package br.com.LeituraAgua.DAO;
 
 import br.com.model.Consumidor;
-import br.com.model.Endereco;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.*;
 
 /**
  *
@@ -24,43 +25,71 @@ public class ConsumidorDAO {
     public Consumidor cadastrar(Consumidor obj) {
 
         try {
-            String sqlcadastra = "INSERT INTO consumidor (int id_consumidor, String nome, String cpf, String contato ) values (?,?,?,?)";
-            stmt = ConexaoDAO.connect.prepareStatement(sqlcadastra);
-            stmt.setInt(1, obj.getIdConsumidor());
-            stmt.setString(2, obj.getNome());
-            stmt.setString(3, obj.getCpf());
-            stmt.setString(4, obj.getContato());
-            ResultSet consumidor = stmt.executeQuery();
+            String sqlcadastra = "INSERT INTO consumidor ( nome, cpf, contato) values (?,?,?)";
+            ConexaoDAO conDao = ConexaoDAO.getInstance();
+            stmt = conDao.connect.prepareStatement(sqlcadastra, Statement.RETURN_GENERATED_KEYS);     
+            stmt.setString(1, obj.getNome());
+            stmt.setString(2, obj.getCpf());
+            stmt.setString(3, obj.getContato());
+            stmt.executeUpdate();
             
-            
-            Consumidor novoConsumidor = new Consumidor(consumidor.getInt("id_consumidor"),
-                    consumidor.getString("nome"),
-                    consumidor.getString("cpf"),
-                    consumidor.getString("contato"));
-                               
-            return novoConsumidor;
-        } catch (SQLException add) {
+            try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    return listarPorId(generatedKeys.getInt(1));
+                } else {
+                    throw new SQLException("Ocorreu um erro ao cadastrar o endereço!");
+                }
+            }                               
+            } catch (SQLException add) {
             add.getMessage();
         }
         return null;
-    }
-    
-    public List<Consumidor> listar() {
-        List<Consumidor> lista = new ArrayList<Consumidor>();
+        }
+          
+    public Consumidor listarPorId(Integer id) {
+            String sqlListar = "SELECT * FROM consumidor WHERE id = ?";
+            try {
+                ConexaoDAO conDao = ConexaoDAO.getInstance();
+                stmt = conDao.connect.prepareStatement(sqlListar);
+                stmt.setInt(1, id);
+                ResultSet rs = stmt.executeQuery();
+
+                while (rs.next()) {
+
+                    Consumidor obj = new Consumidor();
+                    obj.setIdConsumidor(rs.getInt("id_consumidor"));
+                    obj.setNome(rs.getString("nome"));
+                    obj.setCpf(rs.getString("cpf"));
+                    obj.setContato(rs.getString("contato"));
+
+                    return obj;
+                }
+
+            } catch (SQLException e) {
+                    e.printStackTrace();
+            }
+            return null;
+        }
+
+
+        public List<Consumidor> listar() {
+        List<Consumidor> lista = new ArrayList<>();
         String sqlListar = "SELECT * FROM consumidor ";
 
-        try {
-            stmt = ConexaoDAO.connect.prepareStatement(sqlListar);
-            ResultSet result = stmt.executeQuery();
+            try {
+                ConexaoDAO conDao = ConexaoDAO.getInstance();
+                stmt = conDao.connect.prepareStatement(sqlListar);
+                ResultSet rs = stmt.executeQuery();
 
-            while (result.next()) {
-                
-                Consumidor obj = new Consumidor();
-                obj.setIdConsumidor(result.getInt("id_consumidor"));
-                obj.setNome(result.getString("nome"));
-                obj.setCpf(result.getString("cpf"));
-                obj.setContato(result.getString("contato"));
-                lista.add(obj);
+                while (rs.next()) {
+
+                    Consumidor obj = new Consumidor();
+                    obj.setIdConsumidor(rs.getInt("id_consumidor"));
+                    obj.setNome(rs.getString("nome"));
+                    obj.setCpf(rs.getString("cpf"));
+                    obj.setContato(rs.getString("contato"));
+                    lista.add(obj);
+
             }
         } catch (SQLException add) {
             lista = null;
@@ -70,13 +99,17 @@ public class ConsumidorDAO {
     
     public Consumidor atualizar(Consumidor obj) {
         try {
-            String sqlAtualiza = "UPDATE coonsumidor SET (nome=?,"
+            String sqlAtualiza = "UPDATE consumidor SET (nome=?,"
                     + "cpf=?, contato=?)  WHERE id_consumidor = ?";
-            stmt = ConexaoDAO.connect.prepareStatement(sqlAtualiza);
+            ConexaoDAO conDao = ConexaoDAO.getInstance();
+            stmt = conDao.connect.prepareStatement(sqlAtualiza);
             stmt.setString(1, obj.getNome());
             stmt.setString(2, obj.getCpf());
             stmt.setString(3, obj.getContato());
-            ResultSet consumidor = stmt.executeQuery();
+            stmt.setInt(4,obj.getIdConsumidor());
+            stmt.executeUpdate();
+            
+            return listarPorId(obj.getIdConsumidor());
 
         } catch (SQLException add) {
             add.getMessage();
@@ -84,11 +117,11 @@ public class ConsumidorDAO {
         return null;
     }
 
-      public Consumidor deletar(Consumidor obj) {
-        String sqlDel = "DELETE FROM detetive WHERE id_consumidor =? ";
+    public Consumidor deletar(Consumidor obj) {
+        String sqlDel = "DELETE FROM consumidor WHERE id_consumidor =? ";
         try {
-            ConexaoDAO con = ConexaoDAO.getInstance();
-            stmt = con.connect.prepareStatement(sqlDel);
+            ConexaoDAO conDao = ConexaoDAO.getInstance();
+            stmt = conDao.connect.prepareStatement(sqlDel);
             stmt.setInt(1, obj.getIdConsumidor());
             stmt.executeUpdate();
 

@@ -4,6 +4,7 @@
  */
 package br.com.LeituraAgua.DAO;
 
+import br.com.model.Endereco;
 import br.com.model.Usuario;
 import java.sql.*;
 import java.util.ArrayList;
@@ -18,21 +19,52 @@ public class UsuarioDAO {
 
         try {
             String sqlcadastra = "INSERT INTO usuario (tipo_usuario,login, senha ) values (?, ?, ?)";
-            stmt = ConexaoDAO.connect.prepareStatement(sqlcadastra);
+            ConexaoDAO conDao = ConexaoDAO.getInstance();
+            stmt = conDao.connect.prepareStatement(sqlcadastra, Statement.RETURN_GENERATED_KEYS); 
             stmt.setString(1, obj.getTipoUsuario());
             stmt.setString(2, obj.getLogin());
             stmt.setInt(3, obj.getSenha());
-            ResultSet usuario = stmt.executeQuery();
+            stmt.executeUpdate();
 
-            Usuario novoUsuario = new Usuario(usuario.getString("tipo_usuario"),
-                    usuario.getString("login"),
-                    usuario.getInt("senha"));
-            return novoUsuario;
+            try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    return listarPorId(generatedKeys.getInt(1));
+                } else {
+                    throw new SQLException("Ocorreu um erro ao cadastrar o endereço!");
+                }
+            }
+
         } catch (SQLException add) {
             add.getMessage();
         }
         return null;
     }
+    
+    public Usuario listarPorId(Integer id) {
+        String sqlListar = "SELECT * FROM usuario WHERE id = ?";
+        try {
+            ConexaoDAO conDao = ConexaoDAO.getInstance();
+            stmt = conDao.connect.prepareStatement(sqlListar);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+
+                Usuario obj = new Usuario();
+                obj.setIdUsuario(rs.getInt("id_usuario"));
+                obj.setTipoUsuario(rs.getString("tipo_usuario"));
+                obj.setLogin(rs.getString("login"));
+                obj.setSenha(rs.getInt("senha"));
+                
+                return obj;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
 
     public Usuario logarUsuario(String login, int senha) {
         String sqlLogin = "SELECT * FROM usuario where (login = ? and senha = ?)";
@@ -100,7 +132,10 @@ public class UsuarioDAO {
             stmt.setString(1, obj.getTipoUsuario());
             stmt.setString(2, obj.getLogin());
             stmt.setInt(3, obj.getSenha());
-            ResultSet usuario = stmt.executeQuery();
+            stmt.setInt(3, obj.getIdUsuario());
+            stmt.executeUpdate();           
+            
+            return listarPorId(obj.getIdUsuario());
 
         } catch (SQLException add) {
             add.getMessage();
@@ -108,8 +143,8 @@ public class UsuarioDAO {
         return null;
     }
 
-    public Usuario deletar(Usuario obj) {
-        String sqlDel = "DELETE FROM detetive WHERE id_usuario =? ";
+    public void deletar(Usuario obj) {
+        String sqlDel = "DELETE FROM usuario WHERE id_usuario =? ";
         try {
             ConexaoDAO con = ConexaoDAO.getInstance();
             stmt = con.connect.prepareStatement(sqlDel);
@@ -119,7 +154,6 @@ public class UsuarioDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
     }
 
 }
