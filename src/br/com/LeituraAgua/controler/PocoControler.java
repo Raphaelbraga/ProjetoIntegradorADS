@@ -65,8 +65,10 @@ public class PocoControler {
         if (idPoco != null) {
             setMensagem("Erro - Usuário não existe!");
         } else {
-            Poco pocodel = deleta.deletar(obj);
-            return pocodel;
+            Boolean pocoDeletado = deleta.deletar(obj);
+            if(!pocoDeletado){
+                setMensagem("falha ao deletar Poço, contate suporte");
+            }
         }
         return null;
     }
