@@ -5,24 +5,24 @@
 package br.com.LeituraAgua.Main;
 
 import br.com.LeituraAgua.controler.UsuarioControler;
+import br.com.model.Usuario;
 
 
 public class AppLeituraAgua {
   
     public static void main(String[] args) {
-//
-//     LoginUsuario loginController = new LoginUsuario();
-//     loginController.logarUsuario("admin2", 123456);
-//     System.out.println(loginController.getMensagem());
-// //       UsuarioControler usuControl = new UsuarioControler();
-////        
-////                
-//////        Usuario usuarioTeste = new Usuario();
-//////        usuarioTeste.setLogin("admin2");
-//////        usuarioTeste.setSenha(123456);
-//////        usuarioTeste.setTipoUsuario("admin");
-//////        dao.cadastrar(usuarioTeste);
-////                
+
+   UsuarioControler loginController = new UsuarioControler();
+   loginController.logarUsuario("admin2", 123456);
+   System.out.println(loginController.getMensagem());
+   UsuarioControler usuControl = new UsuarioControler();
+        
+                
+   Usuario usuarioTeste = new Usuario();
+   usuarioTeste.setLogin("admin2");
+   usuarioTeste.setSenha(123456);
+   usuarioTeste.setTipoUsuario("admin");
+   dao.cadastrar(usuarioTeste);                
     }
     
 }
