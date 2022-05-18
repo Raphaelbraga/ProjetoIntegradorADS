@@ -115,7 +115,7 @@ public class PocoDAO {
         return null;
     }
 
-    public void deletar(Poco obj) {
+    public Boolean deletar(Poco obj) {
         String sqlDel = "DELETE FROM poco WHERE id_poco =? ";
         try {
             ConexaoDAO conDao = ConexaoDAO.getInstance();

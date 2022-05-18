@@ -132,7 +132,7 @@ public class UsuarioDAO {
             stmt.setString(1, obj.getTipoUsuario());
             stmt.setString(2, obj.getLogin());
             stmt.setInt(3, obj.getSenha());
-            stmt.setInt(3, obj.getIdUsuario());
+            stmt.setInt(4, obj.getIdUsuario());
             stmt.executeUpdate();           
             
             return listarPorId(obj.getIdUsuario());
