@@ -10,6 +10,7 @@ package br.com.model;
  * @author Cleumar
  */
 public class Consumidor {
+
     private int idConsumidor;
     private String nome;
     private String cpf;
@@ -18,7 +19,8 @@ public class Consumidor {
     public Consumidor() {
     }
 
-    public Consumidor(String nome, String cpf, String contato) {
+    public Consumidor(int idConsumidor, String nome, String cpf, String contato) {
+        this.idConsumidor = idConsumidor;
         this.nome = nome;
         this.cpf = cpf;
         this.contato = contato;
@@ -60,6 +62,5 @@ public class Consumidor {
     public String toString() {
         return "Consumidor{" + "idConsumidor=" + idConsumidor + ", nome=" + nome + ", cpf=" + cpf + ", contato=" + contato + '}';
     }
-    
-    
+
 }

@@ -15,35 +15,63 @@ import java.sql.*;
  *
  * @author Cleumar
  */
+ @SuppressWarnings("static-access")
+ 
 public class EnderecoDAO {
 
     private PreparedStatement stmt;
 
+   
     public Endereco cadastrar(Endereco obj) {
 
         try {
-            String sqlcadastra = "INSERT INTO endereco (int id_endereco, String rua, int numero, String complemento, id_distrito ) values (?,?,?,?,?)";
+            String sqlcadastra = "INSERT INTO endereco ( rua,  numero, complemento, id_distrito ) values (?,?,?,?)";
             ConexaoDAO conDao = ConexaoDAO.getInstance();
-            stmt = conDao.connect.prepareStatement(sqlcadastra);
-            stmt.setInt(1, obj.getIdEndereco());
-            stmt.setString(2, obj.getRua());
-            stmt.setInt(3, obj.getNumero());
-            stmt.setString(4, obj.getComplemento());
-            stmt.setInt(5, obj.getDistrito().getIdDistrito());
-            ResultSet endereco = stmt.executeQuery();
+            stmt = conDao.connect.prepareStatement(sqlcadastra, Statement.RETURN_GENERATED_KEYS);           
+            stmt.setString(1, obj.getRua());
+            stmt.setInt(2, obj.getNumero());
+            stmt.setString(3, obj.getComplemento());
+            stmt.setInt(4, obj.getDistrito().getIdDistrito());
+            stmt.executeUpdate();
 
-            Distrito distritoEndereco = new Distrito();
-            distritoEndereco.setIdDistrito(endereco.getInt("id_distrito"));
+            try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    return listarPorId(generatedKeys.getInt(1));
+                } else {
+                    throw new SQLException("Ocorreu um erro ao cadastrar o endereço!");
+                }
+            }
 
-            Endereco novoEndereco = new Endereco(endereco.getInt("id_endereco"),
-                    endereco.getString("rua"),
-                    endereco.getInt("numero"),
-                    endereco.getString("complemento"),
-                    distritoEndereco);
-
-            return novoEndereco;
         } catch (SQLException add) {
             add.getMessage();
+        }
+        return null;
+    }
+
+    public Endereco listarPorId(Integer id) {
+        String sqlListar = "SELECT * FROM endereco WHERE id = ?";
+        try {
+            ConexaoDAO conDao = ConexaoDAO.getInstance();
+            stmt = conDao.connect.prepareStatement(sqlListar);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            DistritoDAO distDao = new DistritoDAO();
+
+            while (rs.next()) {
+
+                Endereco obj = new Endereco();
+                obj.setIdEndereco(rs.getInt("id_endereco"));
+                obj.setRua(rs.getString("rua"));
+                obj.setNumero(rs.getInt("numero"));
+                obj.setComplemento(rs.getString("complemento"));
+                obj.setDistrito(distDao.listarPorId(rs.getInt("id_distrito")));
+
+                return obj;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return null;
     }
@@ -55,19 +83,20 @@ public class EnderecoDAO {
         try {
             ConexaoDAO conDao = ConexaoDAO.getInstance();
             stmt = conDao.connect.prepareStatement(sqlListar);
-            ResultSet result = stmt.executeQuery();
+            ResultSet rs = stmt.executeQuery();
 
-            while (result.next()) {
-                
-                Distrito distritoEndereco = new Distrito();
-                distritoEndereco.setIdDistrito(result.getInt("id_distrito"));
+            DistritoDAO distDao = new DistritoDAO();
+
+            while (rs.next()) {
+
                 Endereco obj = new Endereco();
-                obj.setIdEndereco(result.getInt("id_endereco"));
-                obj.setRua(result.getString("rua"));
-                obj.setNumero(result.getInt("numero"));
-                obj.setComplemento(result.getString("complemento"));
-                obj.setDistrito(distritoEndereco);
+                obj.setIdEndereco(rs.getInt("id_endereco"));
+                obj.setRua(rs.getString("rua"));
+                obj.setNumero(rs.getInt("numero"));
+                obj.setComplemento(rs.getString("complemento"));
+                obj.setDistrito(distDao.listarPorId(rs.getInt("id_distrito")));
                 lista.add(obj);
+
             }
         } catch (SQLException add) {
             lista = null;
@@ -84,8 +113,11 @@ public class EnderecoDAO {
             stmt.setString(1, obj.getRua());
             stmt.setInt(2, obj.getNumero());
             stmt.setString(3, obj.getComplemento());
-            stmt.setInt(2, obj.getDistrito().getIdDistrito());
-            ResultSet endereco = stmt.executeQuery();
+            stmt.setInt(4, obj.getDistrito().getIdDistrito());
+            stmt.setInt(5,obj.getIdEndereco());
+            stmt.executeUpdate();
+            
+            return listarPorId(obj.getIdEndereco());
 
         } catch (SQLException add) {
             add.getMessage();
@@ -93,8 +125,8 @@ public class EnderecoDAO {
         return null;
     }
 
-    public Endereco deletar(Endereco obj) {
-        String sqlDel = "DELETE FROM detetive WHERE id_endereco =? ";
+    public void deletar(Endereco obj) {
+        String sqlDel = "DELETE FROM endereco WHERE id_endereco =? ";
         try {
             ConexaoDAO conDao = ConexaoDAO.getInstance();
             stmt = conDao.connect.prepareStatement(sqlDel);
@@ -104,7 +136,7 @@ public class EnderecoDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+    
     }
 
 }
