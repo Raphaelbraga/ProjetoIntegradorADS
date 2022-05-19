@@ -4,6 +4,7 @@
  */
 package br.com.LeituraAgua.DAO;
 
+import br.com.model.Consumidor;
 import br.com.model.Distrito;
 import br.com.model.Endereco;
 import java.sql.PreparedStatement;
@@ -122,16 +123,21 @@ public class DistritoDAO {
         return null;
     }
 
-    public void deletar(Distrito obj) {
+    public Boolean deletar(Distrito obj) {
         String sqlDel = "DELETE FROM distrito WHERE id_distrito =? ";
         try {
             ConexaoDAO conDao = ConexaoDAO.getInstance();
             stmt = conDao.connect.prepareStatement(sqlDel);
             stmt.setInt(1, obj.getIdDistrito());
-            stmt.executeUpdate();
-
+            int retornoDelet = stmt.executeUpdate();
+            
+            if(retornoDelet ==1) {
+                return true;    
+            }
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return false;
     }
 }
