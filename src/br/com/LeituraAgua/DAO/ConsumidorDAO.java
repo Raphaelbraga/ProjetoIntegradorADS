@@ -6,7 +6,6 @@
 package br.com.LeituraAgua.DAO;
 
 import br.com.model.Consumidor;
-import br.com.model.Poco;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
