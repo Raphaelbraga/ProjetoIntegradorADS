@@ -23,9 +23,9 @@ public class ConsumidorControler {
     
     public Consumidor cadastraNovo(Consumidor obj){
         ConsumidorDAO solicita = new ConsumidorDAO();
-        Consumidor pocoExist = solicita.listarPorId(obj.getIdConsumidor());
+        Consumidor consumidorExist = solicita.listarPorId(obj.getIdConsumidor());
 
-        if (pocoExist != null) {
+        if (consumidorExist != null) {
             setMensagem("Erro - Consumidor ja existe!");
         } else {
             Consumidor novoConsumidor = solicita.cadastrar(obj);

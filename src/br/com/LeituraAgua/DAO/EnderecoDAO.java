@@ -125,18 +125,23 @@ public class EnderecoDAO {
         return null;
     }
 
-    public void deletar(Endereco obj) {
+    public Boolean deletar(Endereco obj) {
         String sqlDel = "DELETE FROM endereco WHERE id_endereco =? ";
         try {
             ConexaoDAO conDao = ConexaoDAO.getInstance();
             stmt = conDao.connect.prepareStatement(sqlDel);
             stmt.setInt(1, obj.getIdEndereco());
-            stmt.executeUpdate();
-
+            int retornoDelet = stmt.executeUpdate();
+            
+            if(retornoDelet ==1) {
+                return true;    
+            }
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    
+        return false;
     }
-
 }
+
+

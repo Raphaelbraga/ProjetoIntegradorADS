@@ -40,7 +40,7 @@ public class DespesaDAO {
                 if (generatedKeys.next()) {
                     return listarPorId(generatedKeys.getInt(1));
                 } else {
-                    throw new SQLException("Ocorreu um erro ao cadastrar o endereço!");
+                    throw new SQLException("Ocorreu um erro ao cadastrar o despesa!");
                 }
             }
 
@@ -50,6 +50,35 @@ public class DespesaDAO {
         return null;
     }
     
+    
+        public List<Despesa> listar() {
+        List<Despesa> lista = new ArrayList<Despesa>();
+        String sqlListar = "SELECT * FROM despesa ";
+
+        try {
+            ConexaoDAO conDao = ConexaoDAO.getInstance();
+            stmt = conDao.connect.prepareStatement(sqlListar);
+            ResultSet rs = stmt.executeQuery();
+
+            PocoDAO poDao = new PocoDAO();
+
+            while (rs.next()) {
+
+                Despesa obj = new Despesa();
+                obj.setIdDespesa(rs.getInt("id_despesa"));
+                obj.setMesVigente(rs.getDate("mes_vigente"));
+                obj.setValorFaturaEnergia(rs.getInt("valor_fatura_energia"));
+                obj.setPoco(poDao.listarPorId(rs.getInt("id_poco")));
+
+
+            }
+        } catch (SQLException add) {
+            lista = null;
+        }
+        return lista;
+    }
+        
+        
    
      public Despesa listarPorId(Integer id) {
         String sqlListar = "SELECT * FROM despesa WHERE id = ?";
@@ -101,17 +130,22 @@ public class DespesaDAO {
         return null;
     }
     
-    public void deletar(Despesa obj) {
+    public Boolean deletar(Despesa obj) {
         String sqlDel = "DELETE FROM despesa WHERE id_despesa =? ";
         try {
             ConexaoDAO conDao = ConexaoDAO.getInstance();
             stmt = conDao.connect.prepareStatement(sqlDel);
             stmt.setInt(1, obj.getIdDespesa());
-            stmt.executeUpdate();
-
+            int retornoDelet = stmt.executeUpdate();
+            
+            if(retornoDelet ==1) {
+                return true;    
+            }
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return false;
     }
        
 }
