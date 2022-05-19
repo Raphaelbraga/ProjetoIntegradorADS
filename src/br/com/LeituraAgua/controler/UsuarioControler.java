@@ -97,8 +97,12 @@ public class UsuarioControler {
         if (usuario == null) {
             setMensagem("Erro - Usuário não existe ou ja excluido");
         } else {
-            Boolean usuDelet = deleta.deletar(obj);
-            return usuDelet;
+            
+            Boolean usuDeletado = deleta.deletar(obj);
+            if(!usuDeletado){
+                setMensagem("falha ao deletar usuario, contate suporte");
+            }
+
         }
         return null;
     }
@@ -110,5 +114,5 @@ public class UsuarioControler {
     public void setMensagem(String mensagem) {
         this.mensagem = mensagem;
     }
-      
+     
 }
