@@ -121,11 +121,15 @@ public class PocoDAO {
             ConexaoDAO conDao = ConexaoDAO.getInstance();
             stmt = conDao.connect.prepareStatement(sqlDel);
             stmt.setInt(1, obj.getIdPoco());
-            stmt.executeUpdate();
-
+            int retornoDelet = stmt.executeUpdate();
+            
+            if(retornoDelet ==1) {
+                return true;    
+            }
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        return false;
     }
 }

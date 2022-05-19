@@ -110,7 +110,7 @@ public class UsuarioDAO {
         String sqlLogin = "SELECT * FROM usuario WHERE login = ?";
         try {
             ConexaoDAO con = ConexaoDAO.getInstance();
-            stmt = con.connect.prepareStatement(sqlLogin);
+            stmt = ConexaoDAO.connect.prepareStatement(sqlLogin);
             stmt.setString(1, login);
             ResultSet rs = stmt.executeQuery();
 
@@ -143,17 +143,22 @@ public class UsuarioDAO {
         return null;
     }
 
-    public void deletar(Usuario obj) {
+    public Boolean deletar(Usuario obj) {
         String sqlDel = "DELETE FROM usuario WHERE id_usuario =? ";
         try {
             ConexaoDAO con = ConexaoDAO.getInstance();
             stmt = con.connect.prepareStatement(sqlDel);
             stmt.setInt(1, obj.getIdUsuario());
-            stmt.executeUpdate();
+            int retornoDelet = stmt.executeUpdate();
+            
+            if(retornoDelet ==1) {
+                return true;    
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+            return false;
     }
 
 }
