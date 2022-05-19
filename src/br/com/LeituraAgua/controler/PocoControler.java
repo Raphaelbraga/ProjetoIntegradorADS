@@ -27,8 +27,8 @@ public class PocoControler {
         if (pocoExist != null) {
             setMensagem("Erro - Poço ja existe!");
         } else {
-            Poco usuario = solicita.cadastrar(obj);
-            return usuario;
+            Poco novoPoco = solicita.cadastrar(obj);
+            return novoPoco;
         }
         return null;
     }

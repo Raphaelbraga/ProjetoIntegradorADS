@@ -90,17 +90,19 @@ public class UsuarioControler {
         return null;
     }
 
-    public Usuario deletar(Usuario obj) {
+    public Boolean deletar(Usuario obj) {
         UsuarioDAO deleta = new UsuarioDAO();
         Usuario usuario = deleta.listarPorUsuario(obj.getLogin());
 
         if (usuario == null) {
             setMensagem("Erro - Usuário não existe ou ja excluido");
         } else {
+            
             Boolean usuDeletado = deleta.deletar(obj);
             if(!usuDeletado){
                 setMensagem("falha ao deletar usuario, contate suporte");
             }
+
         }
         return null;
     }

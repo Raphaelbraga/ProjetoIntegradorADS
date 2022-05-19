@@ -32,6 +32,10 @@ public class Fatura {
         this.leitura = leitura;
     }
 
+    public Fatura() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
     
     public int getIdFatura() {
