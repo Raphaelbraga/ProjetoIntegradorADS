@@ -115,17 +115,21 @@ public class PocoDAO {
         return null;
     }
 
-    public void deletar(Poco obj) {
+    public Boolean deletar(Poco obj) {
         String sqlDel = "DELETE FROM poco WHERE id_poco =? ";
         try {
             ConexaoDAO conDao = ConexaoDAO.getInstance();
             stmt = conDao.connect.prepareStatement(sqlDel);
             stmt.setInt(1, obj.getIdPoco());
-            stmt.executeUpdate();
-
+            int retornoDelet = stmt.executeUpdate();
+            
+            if(retornoDelet ==1) {
+                return true;    
+            }
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        return false;
     }
 }

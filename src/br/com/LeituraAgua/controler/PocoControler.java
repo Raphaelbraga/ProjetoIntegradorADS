@@ -25,10 +25,10 @@ public class PocoControler {
         Poco pocoExist = solicita.listarPorId(obj.getIdPoco());
 
         if (pocoExist != null) {
-            setMensagem("Erro - Usuário ja existe!");
+            setMensagem("Erro - Poço ja existe!");
         } else {
-            Poco usuario = solicita.cadastrar(obj);
-            return usuario;
+            Poco novoPoco = solicita.cadastrar(obj);
+            return novoPoco;
         }
         return null;
     }
@@ -38,7 +38,7 @@ public class PocoControler {
         List<Poco> pocoLista = consulta.listar();
 
         if (pocoLista == null) {
-            setMensagem("Erro - lista de usuario não existe");
+            setMensagem("Erro - lista de poço não existe");
         } else {
             return pocoLista;
         }
@@ -50,7 +50,7 @@ public class PocoControler {
         Poco idPoco = atualiza.listarPorId(obj.getIdPoco());
         
         if (idPoco != null) {
-            setMensagem("Erro - Usuário não existe!");
+            setMensagem("Erro - Poço não existe!");
         } else {
             Poco PocoAtual = atualiza.atualizar(obj);
             return PocoAtual;
@@ -63,10 +63,12 @@ public class PocoControler {
         Poco idPoco = deleta.listarPorId(obj.getIdPoco());
 
         if (idPoco != null) {
-            setMensagem("Erro - Usuário não existe!");
+            setMensagem("Erro - Poço não existe!");
         } else {
-            Poco pocodel = deleta.deletar(obj);
-            return pocodel;
+            Boolean pocoDeletado = deleta.deletar(obj);
+            if(!pocoDeletado){
+                setMensagem("falha ao deletar Poço, contate suporte");
+            }
         }
         return null;
     }

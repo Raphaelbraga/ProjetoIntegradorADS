@@ -117,18 +117,22 @@ public class ConsumidorDAO {
         return null;
     }
 
-    public Consumidor deletar(Consumidor obj) {
+    public Boolean deletar(Consumidor obj) {
         String sqlDel = "DELETE FROM consumidor WHERE id_consumidor =? ";
         try {
             ConexaoDAO conDao = ConexaoDAO.getInstance();
             stmt = conDao.connect.prepareStatement(sqlDel);
             stmt.setInt(1, obj.getIdConsumidor());
-            stmt.executeUpdate();
-
+            int retornoDelet = stmt.executeUpdate();
+            
+            if(retornoDelet ==1) {
+                return true;    
+            }
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return false;
     }
     
 }

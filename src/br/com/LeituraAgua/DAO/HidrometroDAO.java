@@ -125,18 +125,22 @@ public class HidrometroDAO {
         return null;
     }   
     
-    public void deletar(Hidrometro obj) {
+    public Boolean deletar(Hidrometro obj) {
         String sqlDel = "DELETE FROM hidrometro WHERE id_hidrometro =? ";
         try {
             ConexaoDAO conDao = ConexaoDAO.getInstance();
             stmt = conDao.connect.prepareStatement(sqlDel);
-            stmt.setInt(1, obj.getIdEndereco());
-            stmt.executeUpdate();
-
+            stmt.setInt(1, obj.getIdHidrometro());
+            int retornoDelet = stmt.executeUpdate();
+            
+            if(retornoDelet ==1) {
+                return true;    
+            }
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    
+        return false;
     }    
     
 }
