@@ -55,6 +55,7 @@ public class TelaLogin extends javax.swing.JFrame {
         jPasswordFieldSenha = new javax.swing.JPasswordField();
         jLabelLogo = new javax.swing.JLabel();
         jLabelversão = new javax.swing.JLabel();
+        mensagemlogin = new javax.swing.JLabel();
         jLabelFundoLogin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -63,10 +64,12 @@ public class TelaLogin extends javax.swing.JFrame {
         jButtonAcessar.setBackground(new java.awt.Color(255, 255, 255));
         jButtonAcessar.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButtonAcessar.setForeground(new java.awt.Color(49, 74, 110));
+        jButtonAcessar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/LeituraAgua/Imagens/check.png"))); // NOI18N
         jButtonAcessar.setText("Acessar");
         jButtonAcessar.setAlignmentY(0.0F);
         jButtonAcessar.setAutoscrolls(true);
         jButtonAcessar.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED)));
+        jButtonAcessar.setBorderPainted(false);
         jButtonAcessar.setInheritsPopupMenu(true);
         jButtonAcessar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,6 +129,8 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabelversão.setText("Versão 1.0.1");
         getContentPane().add(jLabelversão);
         jLabelversão.setBounds(470, 640, 80, 15);
+        getContentPane().add(mensagemlogin);
+        mensagemlogin.setBounds(700, 380, 0, 0);
 
         jLabelFundoLogin.setBackground(new java.awt.Color(0, 0, 0));
         jLabelFundoLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/LeituraAgua/Imagens/Water-Background-1024x682.png"))); // NOI18N
@@ -203,5 +208,6 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelversão;
     private javax.swing.JPasswordField jPasswordFieldSenha;
     private javax.swing.JTextField jTextFieldUsuario;
+    private javax.swing.JLabel mensagemlogin;
     // End of variables declaration//GEN-END:variables
 }
