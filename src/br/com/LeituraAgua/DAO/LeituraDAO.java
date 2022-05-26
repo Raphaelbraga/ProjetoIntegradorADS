@@ -55,7 +55,7 @@ private PreparedStatement stmt;
     
     
     public Leitura listarPorId(Integer id) {
-        String sqlListar = "SELECT * FROM leitura WHERE id = ?";
+        String sqlListar = "SELECT * FROM leitura WHERE id_leitura = ?";
         try {
             ConexaoDAO conDao = ConexaoDAO.getInstance();
             stmt = conDao.connect.prepareStatement(sqlListar);
@@ -67,7 +67,33 @@ private PreparedStatement stmt;
             while (rs.next()) {
 
                 Leitura obj = new Leitura();
-                obj.setDateMesReferencia(rs.getDate("mes_referencia"));
+                obj.setMesReferencia(rs.getDate("mes_referencia"));
+                obj.setLeituraMesAnterior(rs.getInt("leitura_mes_anterior"));
+                obj.setLeituraMesAtual(rs.getInt("leitura_mes_atual"));          
+                obj.setHidrometro(leiDao.listarPorId(rs.getInt("id_hidrometro")));
+                obj.setUsuario(leDao.listarPorId(rs.getInt("id_usuario")));
+                return obj;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    } 
+    public Leitura listaPorIdHidrometro(Integer id) {
+        String sqlListar = "SELECT * FROM leitura WHERE id_hidrometro = ? order by id_leitura desc limit 1 ";
+        try {
+            ConexaoDAO conDao = ConexaoDAO.getInstance();
+            stmt = conDao.connect.prepareStatement(sqlListar);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            HidrometroDAO leiDao = new HidrometroDAO();
+            UsuarioDAO leDao = new UsuarioDAO();
+            while (rs.next()) {
+
+                Leitura obj = new Leitura();
+                obj.setMesReferencia(rs.getDate("mes_referencia"));
                 obj.setLeituraMesAnterior(rs.getInt("leitura_mes_anterior"));
                 obj.setLeituraMesAtual(rs.getInt("leitura_mes_atual"));          
                 obj.setHidrometro(leiDao.listarPorId(rs.getInt("id_hidrometro")));
@@ -97,7 +123,7 @@ private PreparedStatement stmt;
             while (rs.next()) {
 
                 Leitura obj = new Leitura();
-                obj.setDateMesReferencia(rs.getDate("mes_referencia"));
+                obj.setMesReferencia(rs.getDate("mes_referencia"));
                 obj.setLeituraMesAnterior(rs.getInt("leitura_mes_anterior"));
                 obj.setLeituraMesAtual(rs.getInt("leitura_mes_atual"));          
                 obj.setHidrometro(leiDao.listarPorId(rs.getInt("id_hidrometro")));

@@ -23,11 +23,12 @@ public class HidrometroControler {
     public Hidrometro cadastraNovo(Hidrometro obj){
         HidrometroDAO solicita = new HidrometroDAO();
         Hidrometro hidrometroExist = solicita.listarPorId(obj.getIdHidrometro());
-
+        
         if (hidrometroExist != null) {
             setMensagem("Erro - Hidrometro ja existe!");
         } else {
-            Hidrometro novoHidrometro = solicita.cadastrar(obj);
+            Hidrometro novoHidrometro = solicita.cadastrar(obj); 
+//      setar leitura inicial como leitura anterior. classe leitura. Aqui ou na Leitura??
             return novoHidrometro;
         }
         return null;

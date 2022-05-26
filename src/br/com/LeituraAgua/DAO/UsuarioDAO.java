@@ -70,7 +70,7 @@ public class UsuarioDAO {
         String sqlLogin = "SELECT * FROM usuario where (login = ? and senha = ?)";
         try {
             ConexaoDAO con = ConexaoDAO.getInstance();
-            stmt = ConexaoDAO.connect.prepareStatement(sqlLogin);
+            stmt = con.connect.prepareStatement(sqlLogin);
             stmt.setString(1, login);
             stmt.setInt(2, senha);
             ResultSet rs = stmt.executeQuery();
@@ -110,7 +110,7 @@ public class UsuarioDAO {
         String sqlLogin = "SELECT * FROM usuario WHERE login = ?";
         try {
             ConexaoDAO con = ConexaoDAO.getInstance();
-            stmt = ConexaoDAO.connect.prepareStatement(sqlLogin);
+            stmt = con.connect.prepareStatement(sqlLogin);
             stmt.setString(1, login);
             ResultSet rs = stmt.executeQuery();
 
