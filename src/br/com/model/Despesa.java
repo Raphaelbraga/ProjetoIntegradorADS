@@ -12,12 +12,12 @@ import java.util.Date;
  * @author Cleumar
  */
 public class Despesa {
-    private double idDespesa;
+    private int idDespesa;
     private Date mesVigente;
     private double valorFaturaEnergia;
     private Poco poco;
 
-    public Despesa(double idDespesa, Date mesVigente, double valorFaturaEnergia, Poco poco) {
+    public Despesa(int idDespesa, Date mesVigente, double valorFaturaEnergia, Poco poco) {
         this.idDespesa = idDespesa;
         this.mesVigente = mesVigente;
         this.valorFaturaEnergia = valorFaturaEnergia;
@@ -29,7 +29,7 @@ public class Despesa {
     
     
 
-    public double getIdDespesa() {
+    public int getIdDespesa() {
         return idDespesa;
     }
 
