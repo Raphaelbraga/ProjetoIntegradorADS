@@ -25,8 +25,7 @@ public class AppLeituraAgua {
    usuarioTeste.setTipoUsuario("admin");
    dao.cadastrar(usuarioTeste);                
     }
-=======
-<<<<<<< HEAD
+
     // LoginUsuario loginController = new LoginUsuario();
     // loginController.logarUsuario("admin2", 123456);
      //System.out.println(loginController.getMensagem());
@@ -40,7 +39,7 @@ public class AppLeituraAgua {
     //    dao.cadastrar(usuarioTeste);
                 
     }
-=======
+
 //     LoginUsuario loginController = new LoginUsuario();
 //     loginController.logarUsuario("admin2", 123456);
 //     System.out.println(loginController.getMensagem());
@@ -54,7 +53,6 @@ public class AppLeituraAgua {
 //        dao.cadastrar(usuarioTeste);
 //                
 //    }
->>>>>>> 0264973d636b8b6ee5da73cc466b550efe205fe8
->>>>>>> 8c237feb89d38d0d2116bba4f47fb949ef21c485
+
     
 }

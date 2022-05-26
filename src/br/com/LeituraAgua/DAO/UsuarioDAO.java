@@ -41,7 +41,7 @@ public class UsuarioDAO {
     }
     
     public Usuario listarPorId(Integer id) {
-        String sqlListar = "SELECT * FROM usuario WHERE id = ?";
+        String sqlListar = "SELECT * FROM usuario WHERE id_usuario = ?";
         try {
             ConexaoDAO conDao = ConexaoDAO.getInstance();
             stmt = conDao.connect.prepareStatement(sqlListar);

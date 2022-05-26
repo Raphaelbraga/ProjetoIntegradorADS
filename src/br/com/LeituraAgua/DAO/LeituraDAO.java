@@ -33,8 +33,8 @@ private PreparedStatement stmt;
             ConexaoDAO conDao = ConexaoDAO.getInstance();
             stmt = conDao.connect.prepareStatement(sqlcadastra, Statement.RETURN_GENERATED_KEYS);            
             stmt.setDate(1, (Date) obj.getMesReferencia());
-            stmt.setInt(2, obj.getLeituraMesAnterior());
-            stmt.setInt(3, obj.getLeituraMesAtual());
+            stmt.setDouble(2, obj.getLeituraMesAnterior());
+            stmt.setDouble(3, obj.getLeituraMesAtual());
             stmt.setInt(4, obj.getHidrometro().getIdHidrometro());
             stmt.setInt(5, obj.getUsuario().getIdUsuario());
             stmt.executeUpdate();
@@ -92,10 +92,9 @@ private PreparedStatement stmt;
             UsuarioDAO leDao = new UsuarioDAO();
             while (rs.next()) {
 
-                Leitura obj = new Leitura();
-                obj.setMesReferencia(rs.getDate("mes_referencia"));
-                obj.setLeituraMesAnterior(rs.getInt("leitura_mes_anterior"));
-                obj.setLeituraMesAtual(rs.getInt("leitura_mes_atual"));          
+                obj.setDateMesReferencia(rs.getDate("mes_referencia"));
+                obj.setLeituraMesAnterior( rs.getDouble("leitura_mes_anterior"));
+                obj.setLeituraMesAtual( rs.getDouble("leitura_mes_atual"));          
                 obj.setHidrometro(leiDao.listarPorId(rs.getInt("id_hidrometro")));
                 obj.setUsuario(leDao.listarPorId(rs.getInt("id_usuario")));
                 return obj;
@@ -123,9 +122,10 @@ private PreparedStatement stmt;
             while (rs.next()) {
 
                 Leitura obj = new Leitura();
-                obj.setMesReferencia(rs.getDate("mes_referencia"));
-                obj.setLeituraMesAnterior(rs.getInt("leitura_mes_anterior"));
-                obj.setLeituraMesAtual(rs.getInt("leitura_mes_atual"));          
+
+                obj.setDateMesReferencia(rs.getDate("mes_referencia"));
+                obj.setLeituraMesAnterior(rs.getDouble("leitura_mes_anterior"));
+                obj.setLeituraMesAtual(rs.getDouble("leitura_mes_atual"));          
                 obj.setHidrometro(leiDao.listarPorId(rs.getInt("id_hidrometro")));
                 obj.setUsuario(leDao.listarPorId(rs.getInt("id_usuario")));
                 lista.add(obj);
@@ -146,8 +146,8 @@ private PreparedStatement stmt;
             ConexaoDAO conDao = ConexaoDAO.getInstance();
             stmt = conDao.connect.prepareStatement(sqlAtualiza);
             stmt.setDate(1, (Date) obj.getMesReferencia());
-            stmt.setInt(2, obj.getLeituraMesAnterior());
-            stmt.setInt(3, obj.getLeituraMesAtual());
+            stmt.setDouble(2, obj.getLeituraMesAnterior());
+            stmt.setDouble(3, obj.getLeituraMesAtual());
             stmt.setInt(4, obj.getHidrometro().getIdHidrometro());
             stmt.setInt(5, obj.getUsuario().getIdUsuario());
             stmt.executeUpdate();

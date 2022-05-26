@@ -62,7 +62,7 @@ public class DistritoDAO {
     }
 
     public Distrito listarPorId(Integer id) {
-        String sqlListar = "SELECT * FROM distrito WHERE id = ?";
+        String sqlListar = "SELECT * FROM distrito WHERE id_distrito = ?";
         try {
             ConexaoDAO conDao = ConexaoDAO.getInstance();
             stmt = conDao.connect.prepareStatement(sqlListar);

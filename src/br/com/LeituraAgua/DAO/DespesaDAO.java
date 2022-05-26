@@ -32,7 +32,7 @@ public class DespesaDAO {
             ConexaoDAO conDao = ConexaoDAO.getInstance();
             stmt = conDao.connect.prepareStatement(sqlcadastra, Statement.RETURN_GENERATED_KEYS);
             stmt.setDate(1, (Date) obj.getMesVigente());
-            stmt.setInt(2, obj.getValorFaturaEnergia());
+            stmt.setDouble(2, obj.getValorFaturaEnergia());
             stmt.setInt(3, obj.getPoco().getIdPoco());
             stmt.executeUpdate();
 
@@ -67,7 +67,7 @@ public class DespesaDAO {
                 Despesa obj = new Despesa();
                 obj.setIdDespesa(rs.getInt("id_despesa"));
                 obj.setMesVigente(rs.getDate("mes_vigente"));
-                obj.setValorFaturaEnergia(rs.getInt("valor_fatura_energia"));
+                obj.setValorFaturaEnergia(rs.getDouble("valor_fatura_energia"));
                 obj.setPoco(poDao.listarPorId(rs.getInt("id_poco")));
 
 
@@ -81,7 +81,7 @@ public class DespesaDAO {
         
    
      public Despesa listarPorId(Integer id) {
-        String sqlListar = "SELECT * FROM despesa WHERE id = ?";
+        String sqlListar = "SELECT * FROM despesa WHERE id_despesa = ?";
         try {
             ConexaoDAO conDao = ConexaoDAO.getInstance();
             stmt = conDao.connect.prepareStatement(sqlListar);

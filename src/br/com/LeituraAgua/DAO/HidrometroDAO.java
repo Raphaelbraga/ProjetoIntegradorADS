@@ -27,7 +27,7 @@ public class HidrometroDAO {
             String sqlcadastra = "INSERT INTO hidrometro ( leituraInstalacao, situação, Consumidor, Endereco ) values (?, ?, ?, ?)";
             ConexaoDAO conDao = ConexaoDAO.getInstance();
             stmt = conDao.connect.prepareStatement(sqlcadastra, Statement.RETURN_GENERATED_KEYS);
-            stmt.setInt(1, obj.getLeituraInstalacao());
+            stmt.setDouble(1, obj.getLeituraInstalacao());
             stmt.setBoolean(2, obj.isSituacao());
             stmt.setString(3, obj.getConsumidor().getNome());
             stmt.setString(4, obj.getEndereco().getRua());
@@ -48,7 +48,7 @@ public class HidrometroDAO {
     }
 
     public Hidrometro listarPorId(Integer id) {
-        String sqlListar = "SELECT * FROM hidrometro WHERE id = ?";
+        String sqlListar = "SELECT * FROM hidrometro WHERE id_hidrometro = ?";
         try {
             ConexaoDAO conDao = ConexaoDAO.getInstance();
             stmt = conDao.connect.prepareStatement(sqlListar);
@@ -62,7 +62,7 @@ public class HidrometroDAO {
 
                 Hidrometro obj = new Hidrometro();
                 obj.setIdHidrometro(rs.getInt("id_hidrometro"));
-                obj.setLeituraInstalacao(rs.getInt("leitura_instalacao"));
+                obj.setLeituraInstalacao(rs.getDouble("leitura_instalacao"));
                 obj.setSituacao(rs.getBoolean("situacao"));               
                 obj.setConsumidor(consDao.listarPorId(rs.getInt("nome")));
                 obj.setEndereco(endeDao.listarPorId(rs.getInt("rua")));
@@ -91,7 +91,7 @@ public class HidrometroDAO {
 
                 Hidrometro obj = new Hidrometro();
                 obj.setIdHidrometro(rs.getInt("id_hidrometro"));
-                obj.setLeituraInstalacao(rs.getInt("leitura_instalacao"));
+                obj.setLeituraInstalacao(rs.getDouble("leitura_instalacao"));
                 obj.setSituacao(rs.getBoolean("situacao"));               
                 obj.setConsumidor(consDao.listarPorId(rs.getInt("nome")));
                 obj.setEndereco(endeDao.listarPorId(rs.getInt("rua")));
@@ -110,7 +110,7 @@ public class HidrometroDAO {
                     + "situacao=?, nome=?, rua=?)  WHERE id_hidrometro = ?";
             ConexaoDAO conDao = ConexaoDAO.getInstance();
             stmt = conDao.connect.prepareStatement(sqlAtualiza);
-            stmt.setInt(1, obj.getLeituraInstalacao());
+            stmt.setDouble(1, obj.getLeituraInstalacao());
             stmt.setBoolean(2, obj.isSituacao());
             stmt.setString(3, obj.getConsumidor().getNome());
             stmt.setString(4,obj.getEndereco().getRua());
