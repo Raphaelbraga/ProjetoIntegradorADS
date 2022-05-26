@@ -3,11 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Cleumar/git/ProjetoIntegradorADS/src/br/com/LeituraAgua/DAO/DespesaDAO.java</file>
-            <file>file:/C:/Users/Cleumar/git/ProjetoIntegradorADS/src/br/com/LeituraAgua/controler/EnderecoControler.java</file>
-            <file>file:/C:/Users/Cleumar/git/ProjetoIntegradorADS/src/br/com/LeituraAgua/controler/HidrometroControler.java</file>
+            <file>file:/C:/Users/Cleumar/git/ProjetoIntegradorADS/src/br/com/LeituraAgua/controler/DistritoControler.java</file>
             <file>file:/C:/Users/Cleumar/git/ProjetoIntegradorADS/src/br/com/LeituraAgua/controler/DespesaControler.java</file>
-            <file>file:/C:/Users/Cleumar/git/ProjetoIntegradorADS/src/br/com/LeituraAgua/DAO/EnderecoDAO.java</file>
         </group>
     </open-files>
 </project-private>

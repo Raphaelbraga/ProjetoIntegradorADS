@@ -49,7 +49,7 @@ public class EnderecoDAO {
     }
 
     public Endereco listarPorId(Integer id) {
-        String sqlListar = "SELECT * FROM endereco WHERE id = ?";
+        String sqlListar = "SELECT * FROM endereco WHERE id_endereco = ?";
         try {
             ConexaoDAO conDao = ConexaoDAO.getInstance();
             stmt = conDao.connect.prepareStatement(sqlListar);
