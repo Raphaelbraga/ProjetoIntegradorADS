@@ -23,7 +23,6 @@ public class Distrito {
     }
 
     public Distrito() {
-
     }
 
 

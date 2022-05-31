@@ -14,8 +14,8 @@ import java.util.Date;
 public class Leitura {
     private int idLeitura;
     private Date mesReferencia;
-    private int leituraMesAnterior;
-    private int leituraMesAtual;
+    private double leituraMesAnterior;
+    private double leituraMesAtual;
     private Hidrometro hidrometro;
     private Usuario usuario;
 
@@ -33,10 +33,8 @@ public class Leitura {
     }
 
     public Leitura() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
-    
-    
 
     public int getIdLeitura() {
         return idLeitura;
@@ -54,7 +52,7 @@ public class Leitura {
         this.mesReferencia = mesReferencia;
     }
 
-    public int getLeituraMesAnterior() {
+    public double getLeituraMesAnterior() {
         return leituraMesAnterior;
     }
 
@@ -62,7 +60,7 @@ public class Leitura {
         this.leituraMesAnterior = leituraMesAnterior;
     }
 
-    public int getLeituraMesAtual() {
+    public double getLeituraMesAtual() {
         return leituraMesAtual;
     }
 
@@ -85,10 +83,5 @@ public class Leitura {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-
-    public void setDateMesReferencia(java.sql.Date date) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
     
 }

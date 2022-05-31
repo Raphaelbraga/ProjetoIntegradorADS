@@ -13,15 +13,15 @@ import java.util.Date;
  */
 public class Fatura {
     private int idFatura;
-    private int taxaAdministrativa;
-    private int valorMetroCubico;
-    private int valorFatura;
+    private double taxaAdministrativa;
+    private double valorMetroCubico;
+    private double valorFatura;
     private Date mesReferencia;
     private Date dataVencimento;
     private boolean situacao;
     private Leitura leitura;
 
-    public Fatura(int idFatura, int taxaAdministrativa, int valorMetroCubico, int valorFatura, Date mesReferencia, Date dataVencimento, boolean situacao, Leitura leitura) {
+    public Fatura(int idFatura, double taxaAdministrativa, double valorMetroCubico, double valorFatura, Date mesReferencia, Date dataVencimento, boolean situacao, Leitura leitura) {
         this.idFatura = idFatura;
         this.taxaAdministrativa = taxaAdministrativa;
         this.valorMetroCubico = valorMetroCubico;
@@ -46,27 +46,27 @@ public class Fatura {
         this.idFatura = idFatura;
     }
 
-    public int getTaxaAdministrativa() {
+    public double getTaxaAdministrativa() {
         return taxaAdministrativa;
     }
 
-    public void setTaxaAdministrativa(int taxaAdministrativa) {
+    public void setTaxaAdministrativa(double taxaAdministrativa) {
         this.taxaAdministrativa = taxaAdministrativa;
     }
 
-    public int getValorMetroCubico() {
+    public double getValorMetroCubico() {
         return valorMetroCubico;
     }
 
-    public void setValorMetroCubico(int valorMetroCubico) {
+    public void setValorMetroCubico(double valorMetroCubico) {
         this.valorMetroCubico = valorMetroCubico;
     }
 
-    public int getValorFatura() {
+    public double getValorFatura() {
         return valorFatura;
     }
 
-    public void setValorFatura(int valorFatura) {
+    public void setValorFatura(double valorFatura) {
         this.valorFatura = valorFatura;
     }
 

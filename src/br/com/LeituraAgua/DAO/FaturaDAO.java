@@ -25,9 +25,9 @@ public class FaturaDAO {
             String sqlcadastra = "INSERT INTO fatura ( taxa_administrativa,  valor_metro_cubico, valor_fatura, mes_referencia, data_vencimento, situação, leitura ) values (?,?,?,?,?,?,?)";
             ConexaoDAO conDao = ConexaoDAO.getInstance();
             PreparedStatement stmt = conDao.connect.prepareStatement(sqlcadastra, Statement.RETURN_GENERATED_KEYS);           
-            stmt.setInt(1, obj.getTaxaAdministrativa());
-            stmt.setInt(2, obj.getValorMetroCubico());
-            stmt.setInt(3, obj.getValorFatura());
+            stmt.setDouble(1, obj.getTaxaAdministrativa());
+            stmt.setDouble(2, obj.getValorMetroCubico());
+            stmt.setDouble(3, obj.getValorFatura());
             stmt.setDate(4, (Date) obj.getMesReferencia());
             stmt.setDate(5, (Date) obj.getDataVencimento());
             stmt.setBoolean(6, obj.isSituacao());
@@ -50,7 +50,7 @@ public class FaturaDAO {
         
         
     public Fatura listarPorId(Integer id) {
-        String sqlListar = "SELECT * FROM leitura WHERE id = ?";
+        String sqlListar = "SELECT * FROM leitura WHERE id_fatura = ?";
         try {
             ConexaoDAO conDao = ConexaoDAO.getInstance();
             PreparedStatement stmt = conDao.connect.prepareStatement(sqlListar);
@@ -63,9 +63,9 @@ public class FaturaDAO {
 
                 Fatura obj = new Fatura();
                 obj.setIdFatura(rs.getInt("id_fatura"));
-                obj.setTaxaAdministrativa(rs.getInt("taxa_administrativa"));
-                obj.setValorMetroCubico(rs.getInt("valor_metro_cubico"));
-                obj.setValorFatura(rs.getInt("valor_fatura"));
+                obj.setTaxaAdministrativa(rs.getDouble("taxa_administrativa"));
+                obj.setValorMetroCubico(rs.getDouble("valor_metro_cubico"));
+                obj.setValorFatura(rs.getDouble("valor_fatura"));
                 obj.setMesReferencia(rs.getDate("mes_referencia"));
                 obj.setDataVencimento(rs.getDate("data_vencimento"));
                 obj.setSituacao(rs.getBoolean("situacao"));                
@@ -96,9 +96,9 @@ public class FaturaDAO {
 
                 Fatura obj = new Fatura();
                 obj.setIdFatura(rs.getInt("id_fatura"));
-                obj.setTaxaAdministrativa(rs.getInt("taxa_administrativa"));
-                obj.setValorMetroCubico(rs.getInt("valor_metro_cubico"));
-                obj.setValorFatura(rs.getInt("valor_fatura"));
+                obj.setTaxaAdministrativa(rs.getDouble("taxa_administrativa"));
+                obj.setValorMetroCubico(rs.getDouble("valor_metro_cubico"));
+                obj.setValorFatura(rs.getDouble("valor_fatura"));
                 obj.setMesReferencia(rs.getDate("mes_referencia"));
                 obj.setDataVencimento(rs.getDate("data_vencimento"));
                 obj.setSituacao(rs.getBoolean("situacao"));                
@@ -118,9 +118,9 @@ public class FaturaDAO {
                     + "valor_metro_cubico=?,valor_fatura=?, mes_referencia=?, data_vencimento=?, situacao=?, id_leitura=?)  WHERE id_fatura = ?";
             ConexaoDAO conDao = ConexaoDAO.getInstance();
             stmt = conDao.connect.prepareStatement(sqlAtualiza);
-            stmt.setInt(1, obj.getTaxaAdministrativa());
-            stmt.setInt(2, obj.getValorMetroCubico());
-            stmt.setInt(3, obj.getValorFatura());
+            stmt.setDouble(1, obj.getTaxaAdministrativa());
+            stmt.setDouble(2, obj.getValorMetroCubico());
+            stmt.setDouble(3, obj.getValorFatura());
             stmt.setDate(4, (Date) obj.getMesReferencia());
             stmt.setDate(5, (Date) obj.getDataVencimento());
             stmt.setBoolean(6, obj.isSituacao());

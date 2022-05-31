@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.com.model;
 
 /**
@@ -11,12 +7,12 @@ package br.com.model;
  */
 public class Hidrometro {
     private int idHidrometro;
-    private int leituraInstalacao;
+    private double leituraInstalacao;
     private boolean situacao;
     private Consumidor consumidor;
     private Endereco endereco;
 
-    public Hidrometro(int idHidrometro, int leituraInstalacao, boolean situacao, Consumidor consumidor, Endereco endereco) {
+    public Hidrometro(int idHidrometro, double leituraInstalacao, boolean situacao, Consumidor consumidor, Endereco endereco) {
         this.idHidrometro = idHidrometro;
         this.leituraInstalacao = leituraInstalacao;
         this.situacao = situacao;
@@ -25,7 +21,8 @@ public class Hidrometro {
     }
 
     public Hidrometro() {
-    }    
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     // gerado delegate methods
     public int getIdConsumidor() {
@@ -78,11 +75,11 @@ public class Hidrometro {
         this.idHidrometro = idHidrometro;
     }
 
-    public int getLeituraInstalacao() {
+    public double getLeituraInstalacao() {
         return leituraInstalacao;
     }
 
-    public void setLeituraInstalacao(int leituraInstalacao) {
+    public void setLeituraInstalacao(double leituraInstalacao) {
         this.leituraInstalacao = leituraInstalacao;
     }
 

@@ -46,7 +46,7 @@ public class PocoDAO {
     }
 
     public Poco listarPorId(Integer id) {
-        String sqlListar = "SELECT * FROM poco WHERE id = ?";
+        String sqlListar = "SELECT * FROM poco WHERE id_poco = ?";
         try {
             ConexaoDAO conDao = ConexaoDAO.getInstance();
             stmt = conDao.connect.prepareStatement(sqlListar);

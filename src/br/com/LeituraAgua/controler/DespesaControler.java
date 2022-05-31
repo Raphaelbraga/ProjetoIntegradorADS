@@ -39,7 +39,6 @@ public class DespesaControler {
     public List<Despesa> consultarLista(Despesa obj) {
         DespesaDAO consulta = new DespesaDAO();
         List<Despesa> despesaLista = consulta.listar();
-                ;
 
         if (despesaLista == null) {
             setMensagem("Erro - lista de Despesa não existe");
