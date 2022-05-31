@@ -12,9 +12,25 @@ public class AppLeituraAgua {
   
     public static void main(String[] args) {
 
+<<<<<<< HEAD
 
 
 
+=======
+<<<<<<< HEAD
+   UsuarioControler loginController = new UsuarioControler();
+   loginController.logarUsuario("admin2", 123456);
+   System.out.println(loginController.getMensagem());
+   UsuarioControler usuControl = new UsuarioControler();
+        
+                
+   Usuario usuarioTeste = new Usuario();
+   usuarioTeste.setLogin("admin2");
+   usuarioTeste.setSenha(123456);
+   usuarioTeste.setTipoUsuario("admin");
+   dao.cadastrar(usuarioTeste);                
+    }
+>>>>>>> main
 
     // LoginUsuario loginController = new LoginUsuario();
     // loginController.logarUsuario("admin2", 123456);

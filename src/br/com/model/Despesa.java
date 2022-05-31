@@ -14,10 +14,10 @@ import java.util.Date;
 public class Despesa {
     private int idDespesa;
     private Date mesVigente;
-    private int valorFaturaEnergia;
+    private double valorFaturaEnergia;
     private Poco poco;
 
-    public Despesa(int idDespesa, Date mesVigente, int valorFaturaEnergia, Poco poco) {
+    public Despesa(int idDespesa, Date mesVigente, double valorFaturaEnergia, Poco poco) {
         this.idDespesa = idDespesa;
         this.mesVigente = mesVigente;
         this.valorFaturaEnergia = valorFaturaEnergia;
@@ -25,7 +25,6 @@ public class Despesa {
     }
 
     public Despesa() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     
@@ -46,11 +45,11 @@ public class Despesa {
         this.mesVigente = mesVigente;
     }
 
-    public int getValorFaturaEnergia() {
+    public double getValorFaturaEnergia() {
         return valorFaturaEnergia;
     }
 
-    public void setValorFaturaEnergia(int valorFaturaEnergia) {
+    public void setValorFaturaEnergia(double valorFaturaEnergia) {
         this.valorFaturaEnergia = valorFaturaEnergia;
     }
 
@@ -63,7 +62,7 @@ public class Despesa {
     }
 
     public Object getpoco() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
     
     

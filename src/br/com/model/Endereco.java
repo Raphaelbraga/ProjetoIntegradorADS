@@ -95,8 +95,5 @@ public class Endereco {
     public void setDistrito(Distrito distrito) {
         this.distrito = distrito;
     }
-
-    
-    
     
 }
