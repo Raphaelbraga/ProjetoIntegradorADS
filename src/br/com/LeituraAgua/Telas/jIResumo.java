@@ -5,6 +5,9 @@
  */
 package br.com.LeituraAgua.Telas;
 
+import br.com.LeituraAgua.DAO.UsuarioDAO;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Alunos
@@ -27,23 +30,349 @@ public class jIResumo extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        Emailtxt = new javax.swing.JLabel();
+        Codigocliente = new javax.swing.JLabel();
+        Email = new javax.swing.JTextField();
+        hidrometrotxt = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        Contato = new javax.swing.JFormattedTextField();
+        mestxt = new javax.swing.JLabel();
+        Mes = new javax.swing.JFormattedTextField();
+        TaxaAdmtxt = new javax.swing.JLabel();
+        TaxaAdm = new javax.swing.JFormattedTextField();
+        NomeClientetxt = new javax.swing.JLabel();
+        Hidrometro = new javax.swing.JFormattedTextField();
+        Codigocliente1 = new javax.swing.JFormattedTextField();
+        Nomecliente = new javax.swing.JTextField();
+        CPFtxt = new javax.swing.JLabel();
+        CPF = new javax.swing.JFormattedTextField();
+        Consumom3txt = new javax.swing.JLabel();
+        Consumom3 = new javax.swing.JFormattedTextField();
+        Valorm3txt = new javax.swing.JLabel();
+        Valorm3 = new javax.swing.JFormattedTextField();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        Imprimirbotao = new javax.swing.JButton();
+        ValorTotaltxt = new javax.swing.JLabel();
+        jFormattedTextField8 = new javax.swing.JFormattedTextField();
 
+        setBorder(null);
+        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        setForeground(java.awt.Color.white);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setMaximumSize(new java.awt.Dimension(2048, 1024));
+        setMinimumSize(new java.awt.Dimension(1100, 900));
+        setRequestFocusEnabled(false);
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
-        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.LINE_AXIS));
-        getContentPane().add(jPanel1);
+        jPanel5.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel5.setForeground(new java.awt.Color(190, 190, 190));
+        jPanel5.setMaximumSize(new java.awt.Dimension(2048, 1024));
+        jPanel5.setMinimumSize(new java.awt.Dimension(1020, 785));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Tela22222");
-        getContentPane().add(jLabel1);
+        Emailtxt.setFont(new java.awt.Font("Sitka Banner", 1, 24)); // NOI18N
+        Emailtxt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Emailtxt.setText("Email:");
+        jPanel5.add(Emailtxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 130, 40));
+
+        Codigocliente.setBackground(new java.awt.Color(255, 255, 255));
+        Codigocliente.setFont(new java.awt.Font("Sitka Banner", 1, 24)); // NOI18N
+        Codigocliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Codigocliente.setText("Código Cliente:");
+        Codigocliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel5.add(Codigocliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 210, 40));
+
+        Email.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        Email.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Email.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EmailActionPerformed(evt);
+            }
+        });
+        jPanel5.add(Email, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 510, 40));
+
+        hidrometrotxt.setBackground(new java.awt.Color(255, 255, 255));
+        hidrometrotxt.setFont(new java.awt.Font("Sitka Banner", 1, 24)); // NOI18N
+        hidrometrotxt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        hidrometrotxt.setText("Código Hidrômetro:");
+        jPanel5.add(hidrometrotxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, 250, 40));
+
+        jLabel8.setFont(new java.awt.Font("Sitka Banner", 1, 24)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Contato:");
+        jPanel5.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 170, 120, 40));
+
+        Contato.setBorder(null);
+        try {
+            Contato.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter(" (##) ##### - ####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        Contato.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Contato.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        Contato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ContatoActionPerformed(evt);
+            }
+        });
+        jPanel5.add(Contato, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 170, 220, 40));
+
+        mestxt.setBackground(new java.awt.Color(0, 153, 255));
+        mestxt.setFont(new java.awt.Font("Sitka Banner", 1, 24)); // NOI18N
+        mestxt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        mestxt.setText("Mês:");
+        mestxt.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel5.add(mestxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 60, 120, 40));
+
+        Mes.setBorder(null);
+        try {
+            Mes.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("## / ##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        Mes.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Mes.setFont(new java.awt.Font("Source Serif Pro", 0, 24)); // NOI18N
+        Mes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MesActionPerformed(evt);
+            }
+        });
+        jPanel5.add(Mes, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 60, 160, 40));
+
+        TaxaAdmtxt.setFont(new java.awt.Font("Sitka Banner", 1, 24)); // NOI18N
+        TaxaAdmtxt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        TaxaAdmtxt.setText("Taxa Adm.");
+        jPanel5.add(TaxaAdmtxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 300, 120, 40));
+
+        TaxaAdm.setBorder(null);
+        try {
+            TaxaAdm.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("R$ ##,##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        TaxaAdm.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TaxaAdm.setFont(new java.awt.Font("Source Serif Pro", 0, 24)); // NOI18N
+        TaxaAdm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TaxaAdmActionPerformed(evt);
+            }
+        });
+        jPanel5.add(TaxaAdm, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 300, 220, 40));
+
+        NomeClientetxt.setFont(new java.awt.Font("Sitka Banner", 1, 24)); // NOI18N
+        NomeClientetxt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        NomeClientetxt.setText("Nome:");
+        jPanel5.add(NomeClientetxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 130, 40));
+
+        Hidrometro.setBorder(null);
+        try {
+            Hidrometro.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("# . ### . ###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        Hidrometro.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Hidrometro.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        Hidrometro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HidrometroActionPerformed(evt);
+            }
+        });
+        jPanel5.add(Hidrometro, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 60, 200, 40));
+
+        Codigocliente1.setBorder(null);
+        try {
+            Codigocliente1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("### . ###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        Codigocliente1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Codigocliente1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        jPanel5.add(Codigocliente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 170, 40));
+
+        Nomecliente.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        Nomecliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Nomecliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NomeclienteActionPerformed(evt);
+            }
+        });
+        jPanel5.add(Nomecliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 510, 40));
+
+        CPFtxt.setFont(new java.awt.Font("Sitka Banner", 1, 24)); // NOI18N
+        CPFtxt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        CPFtxt.setText("CPF:");
+        jPanel5.add(CPFtxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 240, 120, 40));
+
+        CPF.setBorder(null);
+        try {
+            CPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("### . ### . ### - ##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        CPF.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        CPF.setFont(new java.awt.Font("Source Serif Pro", 0, 24)); // NOI18N
+        jPanel5.add(CPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 240, 220, 40));
+
+        Consumom3txt.setFont(new java.awt.Font("Sitka Banner", 1, 24)); // NOI18N
+        Consumom3txt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Consumom3txt.setText("Consumo:");
+        jPanel5.add(Consumom3txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 120, 40));
+
+        Consumom3.setBorder(null);
+        try {
+            Consumom3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###,#m³")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        Consumom3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Consumom3.setFont(new java.awt.Font("Source Serif Pro", 0, 24)); // NOI18N
+        Consumom3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Consumom3ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(Consumom3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, 170, 40));
+
+        Valorm3txt.setFont(new java.awt.Font("Sitka Banner", 1, 24)); // NOI18N
+        Valorm3txt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Valorm3txt.setText("Valor m³:");
+        jPanel5.add(Valorm3txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 300, 120, 40));
+
+        Valorm3.setBorder(null);
+        try {
+            Valorm3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("R$ ###,##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        Valorm3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Valorm3.setFont(new java.awt.Font("Source Serif Pro", 0, 24)); // NOI18N
+        Valorm3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Valorm3ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(Valorm3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, 220, 40));
+
+        jCheckBox1.setBackground(new java.awt.Color(255, 255, 255));
+        jCheckBox1.setFont(new java.awt.Font("Sitka Banner", 1, 24)); // NOI18N
+        jCheckBox1.setText("Pago");
+        jCheckBox1.setBorder(new javax.swing.border.MatteBorder(null));
+        jCheckBox1.setBorderPainted(true);
+        jCheckBox1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel5.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 380, 220, 50));
+
+        Imprimirbotao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/LeituraAgua/Imagens/Impressora.png"))); // NOI18N
+        Imprimirbotao.setText("Imprimir");
+        jPanel5.add(Imprimirbotao, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 480, 160, 50));
+
+        ValorTotaltxt.setFont(new java.awt.Font("Sitka Banner", 1, 24)); // NOI18N
+        ValorTotaltxt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ValorTotaltxt.setText("Valor Total:");
+        jPanel5.add(ValorTotaltxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 390, 120, 40));
+
+        jFormattedTextField8.setBorder(null);
+        try {
+            jFormattedTextField8.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("R$ ##.###,##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFormattedTextField8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jFormattedTextField8.setFont(new java.awt.Font("Source Serif Pro", 0, 24)); // NOI18N
+        jFormattedTextField8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField8ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jFormattedTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 390, 220, 40));
+
+        getContentPane().add(jPanel5);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void EmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EmailActionPerformed
+
+    private void ContatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContatoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ContatoActionPerformed
+
+    private void MesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MesActionPerformed
+
+    private void NomeclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NomeclienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NomeclienteActionPerformed
+
+    private void HidrometroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HidrometroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_HidrometroActionPerformed
+
+    private void TaxaAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaxaAdmActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TaxaAdmActionPerformed
+
+    private void Consumom3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Consumom3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Consumom3ActionPerformed
+
+    private void Valorm3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Valorm3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Valorm3ActionPerformed
+
+    private void jFormattedTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextField8ActionPerformed
+
+    private void jButtonImprimirbotao(java.awt.event.ActionEvent evt){
+          DefaultTableModel modelo = new javax.swing.table.DefaultTableModel();
+        UsuarioDAO Cliente = new UsuarioDAO();
+   
+        
+        tabela.setModel(modelo);
+    
+    List<Produto> lista = ProdutoD.listar(campo_pra_pesquisaNome.getText());//
+
+    for(Produto pro:lista) {
+        modelo.addRow(new String[] {
+            pro.getid_produto().toString(), pro.getnome_produto(), pro.getquant_produto().toString(), pro.getvalor_produto().toString() });
+
+
+    
+} 
+        
+    
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JFormattedTextField CPF;
+    private javax.swing.JLabel CPFtxt;
+    private javax.swing.JLabel Codigocliente;
+    private javax.swing.JFormattedTextField Codigocliente1;
+    private javax.swing.JFormattedTextField Consumom3;
+    private javax.swing.JLabel Consumom3txt;
+    private javax.swing.JFormattedTextField Contato;
+    private javax.swing.JTextField Email;
+    private javax.swing.JLabel Emailtxt;
+    private javax.swing.JFormattedTextField Hidrometro;
+    private javax.swing.JButton Imprimirbotao;
+    private javax.swing.JFormattedTextField Mes;
+    private javax.swing.JLabel NomeClientetxt;
+    private javax.swing.JTextField Nomecliente;
+    private javax.swing.JFormattedTextField TaxaAdm;
+    private javax.swing.JLabel TaxaAdmtxt;
+    private javax.swing.JLabel ValorTotaltxt;
+    private javax.swing.JFormattedTextField Valorm3;
+    private javax.swing.JLabel Valorm3txt;
+    private javax.swing.JLabel hidrometrotxt;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JFormattedTextField jFormattedTextField8;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JLabel mestxt;
     // End of variables declaration//GEN-END:variables
 }
