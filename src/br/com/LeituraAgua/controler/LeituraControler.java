@@ -44,6 +44,19 @@ public class LeituraControler {
         return leituraDao.cadastrar(novaLeitura);
     
     }
+    
+    public Leitura atualizar(Leitura obj) {
+        LeituraDAO atualiza = new LeituraDAO();
+        Leitura idLeitura = atualiza.listarPorId(obj.getIdLeitura());
+        
+        if (idLeitura != null) {
+            setMensagem("Erro - leitura não existe!");
+        } else {
+            Leitura leituraAtual = atualiza.atualizar(obj);
+            return leituraAtual;
+        }
+        return null;
+    }
 
     public String getMensagem() {
         return mensagem;
