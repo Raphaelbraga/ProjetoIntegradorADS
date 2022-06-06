@@ -262,7 +262,6 @@ public class jIResumo extends javax.swing.JInternalFrame {
         jCheckBox1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanel5.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 380, 220, 50));
 
-        Imprimirbotao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/LeituraAgua/Imagens/Impressora.png"))); // NOI18N
         Imprimirbotao.setText("Imprimir");
         jPanel5.add(Imprimirbotao, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 480, 160, 50));
 

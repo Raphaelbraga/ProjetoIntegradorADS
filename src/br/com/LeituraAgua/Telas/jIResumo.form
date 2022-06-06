@@ -436,9 +436,6 @@
         </Component>
         <Component class="javax.swing.JButton" name="Imprimirbotao">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/br/com/LeituraAgua/Imagens/Impressora.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Imprimir"/>
           </Properties>
           <Constraints>
