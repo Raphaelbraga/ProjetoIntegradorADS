@@ -19,7 +19,7 @@ public class Leitura {
     private Hidrometro hidrometro;
     private Usuario usuario;
 
-    public Leitura(int idLeitura, Date mesReferencia, int leituraMesAnterior, int leituraMesAtual, Hidrometro hidrometro, Usuario usuario) {
+    public Leitura(int idLeitura, Date mesReferencia, double leituraMesAnterior, double leituraMesAtual, Hidrometro hidrometro, Usuario usuario) {
         this.idLeitura = idLeitura;
         this.mesReferencia = mesReferencia;
         this.leituraMesAnterior = leituraMesAnterior;
@@ -28,7 +28,7 @@ public class Leitura {
         this.usuario = usuario;
     }
 
-    public Leitura(int aInt, java.sql.Date date, int aInt0, int aInt1, Hidrometro leituraHidrometro) {
+    public Leitura(int aInt, java.sql.Date date, double aInt0, double aInt1, Hidrometro leituraHidrometro) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -56,7 +56,7 @@ public class Leitura {
         return leituraMesAnterior;
     }
 
-    public void setLeituraMesAnterior(int leituraMesAnterior) {
+    public void setLeituraMesAnterior(double leituraMesAnterior) {
         this.leituraMesAnterior = leituraMesAnterior;
     }
 
@@ -64,7 +64,7 @@ public class Leitura {
         return leituraMesAtual;
     }
 
-    public void setLeituraMesAtual(int leituraMesAtual) {
+    public void setLeituraMesAtual(double leituraMesAtual) {
         this.leituraMesAtual = leituraMesAtual;
     }
 

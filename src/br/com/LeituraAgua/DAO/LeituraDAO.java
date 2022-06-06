@@ -5,11 +5,7 @@
  */
 package br.com.LeituraAgua.DAO;
 
-import br.com.model.Distrito;
-import br.com.model.Endereco;
-import br.com.model.Hidrometro;
 import br.com.model.Leitura;
-import br.com.model.Usuario;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -91,8 +87,9 @@ private PreparedStatement stmt;
             HidrometroDAO leiDao = new HidrometroDAO();
             UsuarioDAO leDao = new UsuarioDAO();
             while (rs.next()) {
-
-                obj.setDateMesReferencia(rs.getDate("mes_referencia"));
+                
+                Leitura obj = new Leitura();
+                obj.setMesReferencia(rs.getDate("mes_referencia"));
                 obj.setLeituraMesAnterior( rs.getDouble("leitura_mes_anterior"));
                 obj.setLeituraMesAtual( rs.getDouble("leitura_mes_atual"));          
                 obj.setHidrometro(leiDao.listarPorId(rs.getInt("id_hidrometro")));
@@ -123,7 +120,7 @@ private PreparedStatement stmt;
 
                 Leitura obj = new Leitura();
 
-                obj.setDateMesReferencia(rs.getDate("mes_referencia"));
+                obj.setMesReferencia(rs.getDate("mes_referencia"));
                 obj.setLeituraMesAnterior(rs.getDouble("leitura_mes_anterior"));
                 obj.setLeituraMesAtual(rs.getDouble("leitura_mes_atual"));          
                 obj.setHidrometro(leiDao.listarPorId(rs.getInt("id_hidrometro")));
