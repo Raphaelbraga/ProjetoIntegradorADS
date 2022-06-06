@@ -46,13 +46,14 @@ public class LeituraControler {
     }
     
     public Leitura atualizar(Leitura obj) {
-        LeituraDAO atualiza = new LeituraDAO();
-        Leitura idLeitura = atualiza.listarPorId(obj.getIdLeitura());
-        
+        LeituraDAO atualizaDao = new LeituraDAO();
+        Leitura idLeitura = atualizaDao.listaPorIdHidrometro(obj.getHidrometro().getIdHidrometro());
+                
         if (idLeitura != null) {
             setMensagem("Erro - leitura não existe!");
         } else {
-            Leitura leituraAtual = atualiza.atualizar(obj);
+            novaleitura(obj).setLeituraMesAtual(obj.getLeituraMesAtual());
+            Leitura leituraAtual = atualizaDao.atualizar(obj);
             return leituraAtual;
         }
         return null;

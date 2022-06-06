@@ -107,10 +107,33 @@ public class DespesaDAO {
         return null;
     }   
     
-    
-    
+    public Despesa listarDoMes(Integer mes) {
+        String sqlListar = "SELECT * FROM despesa WHERE mes = ?";
+        try {
+            ConexaoDAO conDao = ConexaoDAO.getInstance();
+            stmt = conDao.connect.prepareStatement(sqlListar);
+            stmt.setInt(1, mes);
+            ResultSet rs = stmt.executeQuery();
 
-    
+            PocoDAO pocDao = new PocoDAO();
+
+            while (rs.next()) {
+
+                Despesa obj = new Despesa();
+                obj.setIdDespesa(rs.getInt("id_despesa"));
+                obj.setMesVigente(rs.getDate("mes_vigente"));
+                obj.setValorFaturaEnergia(rs.getInt("valor_fatura_energia"));
+                obj.setPoco(pocDao.listarPorId(rs.getInt("id_poco")));
+
+                return obj;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }   
+      
     public Despesa atualizar(Despesa obj) {
         try {
             String sqlAtualiza = "UPDATE despesa SET (mes_vigente=?,"
@@ -118,7 +141,7 @@ public class DespesaDAO {
             ConexaoDAO conDao = ConexaoDAO.getInstance();
             stmt = conDao.connect.prepareStatement(sqlAtualiza);
             stmt.setDate(1, (Date) obj.getMesVigente());
-            stmt.setInt(2, obj.getValorFaturaEnergia());
+            stmt.setDouble(2, obj.getValorFaturaEnergia());
             stmt.setInt(2, obj.getPoco().getIdPoco());
              stmt.executeUpdate();
             
@@ -147,5 +170,25 @@ public class DespesaDAO {
         }
         return false;
     }
-       
+       public Double contabilisar (Date despMesVigente){
+           //pegar ultima despesa lançada de cada poço e somar as 3.
+           String sqlSomar = "SELECT SUM(valor_fatura_energia) AS total " +
+                       "FROM despesa Where mes_vigente =?";
+           // retornar como despesa global mes vigente
+            try {
+            ConexaoDAO conDao = ConexaoDAO.getInstance();
+            stmt = conDao.connect.prepareStatement(sqlSomar);
+            stmt.setDate(1, despMesVigente);
+            ResultSet rs = stmt.executeQuery();
+            
+           while (rs.next()) {
+                return rs.getDouble("total");
+            }
+                
+           } catch (Exception e) {
+                e.printStackTrace();
+           }
+
+            return null;
+       }
 }
