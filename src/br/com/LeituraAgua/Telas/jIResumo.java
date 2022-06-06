@@ -331,17 +331,17 @@ public class jIResumo extends javax.swing.JInternalFrame {
         UsuarioDAO Cliente = new UsuarioDAO();
    
         
-        tabela.setModel(modelo);
+        /*tabela.setModel(modelo);
     
     List<Produto> lista = ProdutoD.listar(campo_pra_pesquisaNome.getText());//
 
     for(Produto pro:lista) {
         modelo.addRow(new String[] {
-            pro.getid_produto().toString(), pro.getnome_produto(), pro.getquant_produto().toString(), pro.getvalor_produto().toString() });
+            pro.getid_produto().toString(), pro.getnome_produto(), pro.getquant_produto().toString(), pro.getvalor_produto().toString() });*/
 
 
     
-} 
+
         
     
     }
