@@ -64,7 +64,6 @@ public class TelaLogin extends javax.swing.JFrame {
         jButtonAcessar.setBackground(new java.awt.Color(255, 255, 255));
         jButtonAcessar.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButtonAcessar.setForeground(new java.awt.Color(49, 74, 110));
-        jButtonAcessar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/LeituraAgua/Imagens/check.png"))); // NOI18N
         jButtonAcessar.setText("Acessar");
         jButtonAcessar.setAlignmentY(0.0F);
         jButtonAcessar.setAutoscrolls(true);

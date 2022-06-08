@@ -262,7 +262,6 @@ public class jIResumo extends javax.swing.JInternalFrame {
         jCheckBox1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanel5.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 380, 220, 50));
 
-        Imprimirbotao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/LeituraAgua/Imagens/Impressora.png"))); // NOI18N
         Imprimirbotao.setText("Imprimir");
         jPanel5.add(Imprimirbotao, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 480, 160, 50));
 
@@ -332,17 +331,17 @@ public class jIResumo extends javax.swing.JInternalFrame {
         UsuarioDAO Cliente = new UsuarioDAO();
    
         
-        tabela.setModel(modelo);
+        /*tabela.setModel(modelo);
     
     List<Produto> lista = ProdutoD.listar(campo_pra_pesquisaNome.getText());//
 
     for(Produto pro:lista) {
         modelo.addRow(new String[] {
-            pro.getid_produto().toString(), pro.getnome_produto(), pro.getquant_produto().toString(), pro.getvalor_produto().toString() });
+            pro.getid_produto().toString(), pro.getnome_produto(), pro.getquant_produto().toString(), pro.getvalor_produto().toString() });*/
 
 
     
-} 
+
         
     
     }
