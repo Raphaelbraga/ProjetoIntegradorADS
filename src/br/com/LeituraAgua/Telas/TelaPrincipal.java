@@ -5,6 +5,7 @@
  */
 package br.com.LeituraAgua.Telas;
 
+<<<<<<< HEAD
 import static java.awt.SystemColor.window;
 import javax.swing.JComboBox;
 import javax.swing.JDesktopPane;
@@ -12,6 +13,8 @@ import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import br.com.LeituraAgua.Telas.jIResumo;
 
+=======
+>>>>>>> vinicius
 /**
  *
  * @author Alunos
