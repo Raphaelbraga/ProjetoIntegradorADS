@@ -19,6 +19,7 @@ import br.com.model.Usuario;
 public class AppLeituraAgua {
   
     public static void main(String[] args) {
+
 //-----------seta e cadastra usuario comum e admin e executa logim -----------------------------------------
        
         UsuarioControler usuControl = new UsuarioControler();
