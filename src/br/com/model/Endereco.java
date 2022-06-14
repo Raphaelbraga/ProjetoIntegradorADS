@@ -52,10 +52,7 @@ public class Endereco {
         distrito.setCidade(cidade);
     }
 
-    public String toString() {
-        return distrito.toString();
-    }
-
+  
     public int getIdEndereco() {
         return idEndereco;
     }
@@ -95,5 +92,11 @@ public class Endereco {
     public void setDistrito(Distrito distrito) {
         this.distrito = distrito;
     }
+
+    @Override
+    public String toString() {
+        return "Endereco{" + "idEndereco=" + idEndereco + ", rua=" + rua + ", numero=" + numero + ", complemento=" + complemento + ", distrito=" + distrito + '}';
+    }
+    
     
 }

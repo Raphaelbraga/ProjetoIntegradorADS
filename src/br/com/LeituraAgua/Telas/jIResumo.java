@@ -6,6 +6,7 @@
 package br.com.LeituraAgua.Telas;
 
 import br.com.LeituraAgua.DAO.UsuarioDAO;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 /**
