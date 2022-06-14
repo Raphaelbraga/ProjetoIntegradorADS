@@ -44,7 +44,7 @@ public class DistritoDAO {
     }
 
     public Distrito listarPorNome(String nome) {
-        String sqlListar = "SELECT * FROM distrito WHERE nome = ?";
+        String sqlListar = "SELECT * FROM distrito WHERE nome_distrito = ?";
         try {
             ConexaoDAO conDao = ConexaoDAO.getInstance();
             stmt = conDao.connect.prepareStatement(sqlListar);
@@ -52,7 +52,7 @@ public class DistritoDAO {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                Distrito dist = new Distrito(rs.getInt("id_distrito"), rs.getString("nome"), rs.getString("cidade"));
+                Distrito dist = new Distrito(rs.getInt("id_distrito"), rs.getString("nome_distrito"), rs.getString("cidade"));
                 return dist;
             }
         } catch (SQLException e) {
@@ -70,7 +70,7 @@ public class DistritoDAO {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                Distrito dist = new Distrito(rs.getInt("id_distrito"), rs.getString("nome"), rs.getString("cidade"));
+                Distrito dist = new Distrito(rs.getInt("id_distrito"), rs.getString("nome_distrito"), rs.getString("cidade"));
                 return dist;
             }
         } catch (SQLException e) {

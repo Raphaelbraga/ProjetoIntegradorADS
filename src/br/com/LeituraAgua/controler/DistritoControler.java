@@ -23,7 +23,7 @@ public class DistritoControler {
     
     public Distrito cadastraNovo(Distrito obj){
         DistritoDAO solicita = new DistritoDAO();
-        Distrito distritoExist = solicita.listarPorId(obj.getIdDistrito());
+        Distrito distritoExist = solicita.listarPorNome(obj.getNomeDistrito());
 
         if (distritoExist != null) {
             setMensagem("Erro - Distrito ja existe!");
